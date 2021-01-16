@@ -1,17 +1,30 @@
 import React from "react";
 import { Link } from "@reach/router";
 
+import "bootstrap/dist/css/bootstrap.min.css";
+import BootstrapNavbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import Container from "react-bootstrap/Container";
+
 export default function Navbar() {
     return (
-        <div>
-            <nav>
-                <h3>DoxMy.Tech</h3>
-                <ul>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/about">About</Link></li>
-                    <li><Link to="/privacy">Privacy</Link></li>
-                </ul>
-            </nav>
-        </div>
+        <>
+            <Container>
+                <BootstrapNavbar bg="primary" variant="dark">
+                <Link to="/">
+                    <BootstrapNavbar.Brand>DoxMy.tech</BootstrapNavbar.Brand>
+                </Link>
+                
+                <Nav className="mr-auto">
+                    <Link to="/about">
+                        <p style={{color: "white"}}>About</p>
+                    </Link>
+                    <Link to="/privacy">
+                    <p style={{color: "white"}}>Privacy</p>
+                    </Link>                        
+                </Nav>
+                </BootstrapNavbar>
+            </Container>
+        </>
     )
 }
