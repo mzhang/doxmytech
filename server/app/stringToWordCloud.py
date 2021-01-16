@@ -5,15 +5,6 @@ import requests, json
 
 from wordcloud import WordCloud
 
-def plot_cloud(wordcloud):
-    import matplotlib as plt
-    # Set figure size
-    plt.figure(figsize=(40, 30))
-    # Display image
-    plt.imshow(wordcloud) 
-    # No axis details
-    plt.axis("off");
-
 @app.route('/toWordCloud/',methods=['POST'])
 def toWordCloud():
 
