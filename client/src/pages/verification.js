@@ -5,13 +5,15 @@ import Card from "react-bootstrap/Card"
 import FacebookLogin from 'react-facebook-login';
 import Button from "react-bootstrap/Button"
 
-export default function Verification() {
+export default function Verification(props) {
     const [fbData, setFBData] = useState('');
     const responseFacebook = (response) => {
         if (response.accessToken) setFBData(response);
         console.log(response);
     }
-
+    
+    // You can access the user's twitter/facebook/reddit using props.location.state
+    // For example, props.location.state.reddit gives the user's supposed reddit username
     
     return (
         <div>
@@ -19,7 +21,7 @@ export default function Verification() {
                 <h1>Hold on...</h1>
                 <h2>We need your permission before continuing.</h2>
 
-                <Card className="text-center top-margins"> 
+                <Card className="text-center top-margins">
                     <Card.Header>Facebook</Card.Header>
                     <Card.Body style={{ display: (fbData) ? 'none' : 'block'}}>
 
@@ -35,16 +37,16 @@ export default function Verification() {
                     </Card.Body>
                 </Card>
 
-                <Card className="text-center top-margins"> 
+                <Card className="text-center top-margins">
                     <Card.Header>Twitter</Card.Header>
                     <Card.Body>
 
                         <Card.Text>
                             Add the line <code>DoxMy.Tech</code> to your Twitter bio to give us permission!
                         </Card.Text>
-                        
+
                         <Button variant="primary" size="lg" active>Verify my Twitter bio</Button>
-                        
+
                     </Card.Body>
                 </Card>
 

@@ -1,4 +1,4 @@
-from flask import Flask,make_response,jsonify,send_file
+from flask import Flask,make_response,jsonify,send_file, request
 import requests 
 import json, csv, io
 from wordcloud import WordCloud
@@ -6,10 +6,11 @@ app = Flask(__name__)
 app.config["DEBUG"] = True
 
 import os
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
+#import facebookCheck
 
-load_dotenv()
-twitter_key = os.getenv('TWITTER_KEY')
+#load_dotenv()
+#twitter_key = os.getenv('TWITTER_KEY')
 
 @app.route('/hello', methods=['GET'])
 def hello_world():
@@ -54,5 +55,23 @@ def redditCSV(username):
 def redditCloud(username):
     cloud = WordCloud().generate(getRedditText(username)).to_file(username+".jpg")
     return send_file(username+".jpg", attachment_filename=username+".jpg")
+
+@app.route('/facebookCheck',methods=['POST'])
+def facebookCheck():
+    content = request.json
+    profileLink = content['profileLink']
+    accessCode = content['accessCode']
+    profileID = content['profileID']
+
+    r = requests.get("https://graph.facebook.com/" + profileID + "?field=name, id, last_name&access_token=" + accessCode)
+
+    if r.status_code != 200:
+        result = "false"
+    else:
+        result = "true"
+
+    response = {"success": result, "profileID": profileID}
+
+    return jsonify(response)
 
 app.run()
