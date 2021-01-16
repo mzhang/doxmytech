@@ -3,22 +3,23 @@ import "./verification.css"
 
 import Card from "react-bootstrap/Card"
 import FacebookLogin from 'react-facebook-login';
+import Button from "react-bootstrap/Button"
 
 export default function Verification() {
     const [fbData, setFBData] = useState('');
     const responseFacebook = (response) => {
-        setFBData(response);
+        if (response.accessToken) setFBData(response);
         console.log(response);
     }
 
-    
+
     return (
         <div>
             <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
                 <h1>Hold on...</h1>
                 <h2>We need your permission before continuing.</h2>
 
-                <Card className="text-center"> 
+                <Card className="text-center top-margins">
                     <Card.Header>Facebook</Card.Header>
                     <Card.Body style={{ display: (fbData) ? 'none' : 'block'}}>
 
@@ -33,6 +34,20 @@ export default function Verification() {
                         </Card.Text>
                     </Card.Body>
                 </Card>
+
+                <Card className="text-center top-margins">
+                    <Card.Header>Twitter</Card.Header>
+                    <Card.Body>
+
+                        <Card.Text>
+                            Add the line <code>DoxMy.Tech</code> to your Twitter bio to give us permission!
+                        </Card.Text>
+
+                        <Button variant="primary" size="lg" active>Verify my Twitter bio</Button>
+
+                    </Card.Body>
+                </Card>
+
             </div>
         </div>
     )
