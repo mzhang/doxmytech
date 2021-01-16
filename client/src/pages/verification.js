@@ -5,9 +5,13 @@ import Card from "react-bootstrap/Card"
 import FacebookLogin from 'react-facebook-login';
 
 export default function Verification() {
+    const [fbData, setFBData] = useState('');
     const responseFacebook = (response) => {
+        setFBData(response);
         console.log(response);
     }
+
+    
     return (
         <div>
             <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
@@ -16,7 +20,7 @@ export default function Verification() {
 
                 <Card className="text-center"> 
                     <Card.Header>Facebook</Card.Header>
-                    <Card.Body>
+                    <Card.Body style={{ display: (fbData) ? 'none' : 'block'}}>
 
                         <FacebookLogin
                             appId="440751897337373"
