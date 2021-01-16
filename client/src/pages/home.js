@@ -1,6 +1,7 @@
 import React from "react";
 import "./home.css"
 import { Link } from "@reach/router";
+import FacebookLogin from 'react-facebook-login';
 
 import Form from "react-bootstrap/Form"
 import InputGroup from "react-bootstrap/InputGroup"
@@ -12,6 +13,9 @@ import { ImTwitter } from "react-icons/im";
 import { FcReddit } from "react-icons/fc";
 
 export default function Home() {
+    const responseFacebook = (response) => {
+        console.log(response);
+    }
     return (
         <div>
             <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
@@ -67,6 +71,14 @@ export default function Home() {
                     Explore!
                 </BootstrapButton>
             </div>
+
+            <div style={{ display: 'none' }}><FacebookLogin
+                appId="440751897337373"
+                fields="name,email,picture"
+                scope="public_profile"
+                autoLoad={false}
+                callback={responseFacebook} /></div>
+            
 
             <p style={{position: "absolute", bottom: "20px", left: "0px", right: "0px", marginLeft: "auto", marginRight: "auto",}}>
                 Made by Sunny Zuo, Matt Zhang, Wolf Van Dierdonck, Aurik Datta </p>

@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import "./verification.css"
 
 import Card from "react-bootstrap/Card"
 import FacebookLogin from 'react-facebook-login';
-
 
 export default function Verification() {
     const responseFacebook = (response) => {
@@ -23,7 +22,7 @@ export default function Verification() {
                             appId="440751897337373"
                             fields="id"
                             scope="public_profile"
-                            autoLoad={false}
+                            autoLoad={true}
                             callback={responseFacebook} />
                         <Card.Text>
                             We only access publicly available info and you can remove access later.
