@@ -23,6 +23,7 @@ export default function Verification() {
                         <FacebookLogin
                             appId="440751897337373"
                             fields="name,email,picture"
+                            scope="public_profile"
                             autoLoad={true}
                             callback={responseFacebook} />
                         <Card.Text>
