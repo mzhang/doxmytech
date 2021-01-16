@@ -1,2 +1,5 @@
 ./client/.eslintcache
 .env
+*.pyc
+*.pyo
+__pycache__/
