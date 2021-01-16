@@ -5,11 +5,25 @@ import Card from "react-bootstrap/Card"
 import FacebookLogin from 'react-facebook-login';
 import Button from "react-bootstrap/Button"
 
+//import NodeFetch from "node-fetch";
+
 export default function Verification(props) {
     const [fbData, setFBData] = useState('');
-    const responseFacebook = (response) => {
+    const responseFacebook = async (response) => {
         if (response.accessToken) setFBData(response);
-        console.log(response);
+        console.log(response["id"])
+
+        const response2 = await fetch("http://localhost:5000/facebookCheck", { 
+            method:"post",
+            body: JSON.stringify({
+                "profileLink": props.location.state.facebook,
+                "accessCode": response["accessToken"],
+                "profileID": response["id"]
+            })
+        })
+        console.log(response2)
+        const data = await response2.json()
+        console.log(data)
     }
     
     // You can access the user's twitter/facebook/reddit using props.location.state

@@ -1,9 +1,11 @@
 from flask import Flask,make_response,jsonify,send_file, request
+from flask_cors import CORS
 import requests 
 import json, csv, io
 from wordcloud import WordCloud
 app = Flask(__name__)
 app.config["DEBUG"] = True
+CORS(app)
 
 import os
 #from dotenv import load_dotenv
@@ -58,7 +60,10 @@ def redditCloud(username):
 
 @app.route('/facebookCheck',methods=['POST'])
 def facebookCheck():
+    
+
     content = request.json
+    print(content)
     profileLink = content['profileLink']
     accessCode = content['accessCode']
     profileID = content['profileID']
@@ -70,8 +75,10 @@ def facebookCheck():
     else:
         result = "true"
 
-    response = {"success": result, "profileID": profileID}
+    response = jsonify({"success": result, "profileID": profileID})
 
-    return jsonify(response)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+
+    return response
 
 app.run()
