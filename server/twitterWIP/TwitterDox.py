@@ -6,15 +6,20 @@ app = Flask(__name__)
 app.config["DEBUG"] = True
 headers = {"Authorization": "Bearer AAAAAAAAAAAAAAAAAAAAAOFOLwEAAAAAVRkvjw52a5E9k3O1tnbxwRxvuyQ%3DbI8F9XiX7uILHh3iYx6mA5h6lAPkGmuoetPahhPjzEmpjMVMNY "}
 
-
-@app.route("/", methods=['GET'])
-def hello_world():
-    return "Hello World"
 def getTwitterID(username):
     IdRes = requests.get('https://api.twitter.com/2/users/by/username/'+username,headers = headers).json()
-    id = IdRes['data']['id']
-    return id
-def getTimeline(userid):
+    twitterID = IdRes['data']['id']
+    return twitterID
+
+@app.route("/twitterBio/<username>")
+def getBio(username):
+    BioRes = requests.get('https://api.twitter.com/2/users/by/username/'+username+'?user.fields=description',headers = headers).json()
+    bio=BioRes['data']['description']
+    return bio
+
+@app.route("/twitterTimeline/<username>")
+def getTimeline(username):
+    userid = getTwitterID(username)
     TimelineRes = requests.get('https://api.twitter.com/2/users/'+userid+'/tweets?max_results=100&tweet.fields=created_at', headers = headers).json()
     data = list()
     for i in TimelineRes['data']:

@@ -26,4 +26,11 @@ def getTimeline(userid):
         fc.writeheader()
         fc.writerows(data)
 
-getTimeline('44196397')
+
+def getLocation(username):
+    BioRes = requests.get('https://api.twitter.com/2/users/by/username/'+username+'?user.fields=location',headers = headers).json()
+    bio=BioRes['data']['location']
+    return bio
+
+
+print(getLocation("POTUS"))

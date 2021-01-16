@@ -1,4 +1,7 @@
 ./client/.eslintcache
 .env
+*.pyc
+*.pyo
+server/__pycache__/
+server/app/__pycache__/
 ./server/app/cloud.jpg
-./server/app/__pycache__/
