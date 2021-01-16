@@ -13,6 +13,7 @@ export default function Verification(props) {
     const responseFacebook = async (response) => {
         if (response.accessToken) setFBData(response);
         console.log(response["id"])
+        console.log(response["accessToken"])
 
         const res = await axios({
             method: 'post',
