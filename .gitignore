@@ -4,3 +4,4 @@
 *.pyo
 server/__pycache__/
 server/app/__pycache__/
+./server/app/cloud.jpg
