@@ -83,8 +83,9 @@ export default function Home() {
                 callback={() => {}} /></div>
             
 
-            <p style={{position: "absolute", bottom: "20px", left: "0px", right: "0px", marginLeft: "auto", marginRight: "auto",}}>
-                Made by Sunny Zuo, Matt Zhang, Wolf Van Dierdonck, Aurik Datta </p>
+            <div class="fixed-bottom text-center bg-white" >
+                <p>Made by Sunny Zuo, Matt Zhang, Wolf Van Dierdonck, Aurik Datta</p> 
+            </div>
         </div>
     )
 }
