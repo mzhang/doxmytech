@@ -9,17 +9,19 @@ import Container from "react-bootstrap/Container";
 export default function Navbar() {
     return (
         <>
-            <Container>
+            <Container style={{maxWidth: "100%", marginLeft: "0px", marginRight: "0px", paddingLeft: "0px", paddingRight: "0px"}}>
                 <BootstrapNavbar bg="primary" variant="dark">
-                <Link to="/">
-                    <BootstrapNavbar.Brand>DoxMy.tech</BootstrapNavbar.Brand>
-                </Link>
-                
-                <Nav className="mr-auto">
-                    <Nav.Link as={Link} to="/about">About</Nav.Link>
-                    <Nav.Link as={Link} to="/privacy">Privacy</Nav.Link>                  
-                </Nav>
-                </BootstrapNavbar>
+                    <Link to="/">
+                        <BootstrapNavbar.Brand>DoxMy.tech</BootstrapNavbar.Brand>
+                    </Link>
+
+                    <BootstrapNavbar.Collapse className="justify-content-end" style={{marginRight: "0px"}}>
+                        <Nav>
+                            <Nav.Link as={Link} to="/about">About</Nav.Link>
+                            <Nav.Link as={Link} to="/privacy">Privacy</Nav.Link>                  
+                        </Nav>
+                    </BootstrapNavbar.Collapse>
+                </BootstrapNavbar> 
             </Container>
         </>
     )
