@@ -8,8 +8,10 @@ headers = {"Authorization": "Bearer AAAAAAAAAAAAAAAAAAAAAOFOLwEAAAAAVRkvjw52a5E9
 
 
 @app.route("/", methods=['GET'])
-def hello_world():
-    return "Hello World"
+def getBio(username):
+    BioRes = requests.get('https://api.twitter.com/2/users/by/username/'+username+'?user.fields=description',headers = headers).json()
+    bio=BioRes['data']['description']
+    return bio
 def getTwitterID(username):
     IdRes = requests.get('https://api.twitter.com/2/users/by/username/'+username,headers = headers).json()
     id = IdRes['data']['id']
