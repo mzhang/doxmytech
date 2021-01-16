@@ -10,6 +10,8 @@ import axios from "axios";
 
 export default function Verification(props) {
     const [fbData, setFBData] = useState('');
+    const [twitterData, setTwitterData] = useState('');
+
     const responseFacebook = async (response) => {
         if (response.accessToken) setFBData(response);
         console.log(response["id"])
@@ -26,6 +28,19 @@ export default function Verification(props) {
         })
 
         console.log(res.data);
+    }
+
+    const responseTwitter = async () => {
+        const res = await axios({
+            method: 'get',
+            url: 'http://localhost:5000/twitterBio/' + props.location.state.twitter
+        })
+
+        var bio = res.data;
+        console.log(bio)
+        if (bio.toLowerCase() === "doxmytech") {
+            setTwitterData("twitter bio is correct");
+        }
     }
     
     // You can access the user's twitter/facebook/reddit using props.location.state
@@ -55,13 +70,13 @@ export default function Verification(props) {
 
                 <Card className="text-center top-margins">
                     <Card.Header>Twitter</Card.Header>
-                    <Card.Body>
+                    <Card.Body style={{ display: (twitterData) ? 'none' : 'block'}}>
 
                         <Card.Text>
-                            Add the line <code>DoxMy.Tech</code> to your Twitter bio to give us permission!
+                            Add the line <code>DoxMyTech</code> to your Twitter bio to give us permission!
                         </Card.Text>
 
-                        <Button variant="primary" size="lg" active>Verify my Twitter bio</Button>
+                        <Button variant="primary" size="lg" onClick={responseTwitter} active>Verify my Twitter bio</Button>
 
                     </Card.Body>
                 </Card>

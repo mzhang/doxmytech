@@ -1,5 +1,4 @@
 from app import app
-from wordcloud import WordCloud
 
 from flask import Flask
 from flask import make_response,jsonify,send_file,request
@@ -39,8 +38,3 @@ def redditCSV(username):
     response.headers['Content-Disposition'] = 'attachment; filename='+username+'.csv' 
     response.mimetype='text/csv'
     return response
-
-@app.route('/redditCloud/<username>')
-def redditCloud(username):
-    cloud = WordCloud().generate(getRedditText(username)).to_file(username+".jpg")
-    return send_file(username+".jpg", attachment_filename=username+".jpg")
