@@ -44,4 +44,3 @@ def redditCSV(username):
 def redditCloud(username):
     cloud = WordCloud().generate(getRedditText(username)).to_file(username+".jpg")
     return send_file(username+".jpg", attachment_filename=username+".jpg")
-
