@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./home.css"
 import { Link } from "@reach/router";
 import FacebookLogin from 'react-facebook-login';
@@ -13,9 +13,9 @@ import { ImTwitter } from "react-icons/im";
 import { FcReddit } from "react-icons/fc";
 
 export default function Home() {
-    const responseFacebook = (response) => {
-        console.log(response);
-    }
+    const [fbURL, setFbURL] = useState('');
+    const [twitterAcc, setTwitterAcc] = useState('');
+    const [redditAcc, setRedditAcc] = useState('');
     return (
         <div>
             <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
@@ -30,6 +30,7 @@ export default function Home() {
                                 placeholder="https://facebook.com/"
                                 aria-label="Username"
                                 aria-describedby="basic-addon1"
+                                onChange={(e) => setFbURL(e.target.value)}
                             />
                         </InputGroup>
                     </Form>
@@ -46,6 +47,7 @@ export default function Home() {
                                 placeholder="Username"
                                 aria-label="Username"
                                 aria-describedby="basic-addon1"
+                                onChange={(e) => setRedditAcc(e.target.value)}
                             />
                         </InputGroup>
                     </Form>
@@ -62,12 +64,13 @@ export default function Home() {
                             placeholder="Username"
                             aria-label="Username"
                             aria-describedby="basic-addon1"
+                                onChange={(e) => setTwitterAcc(e.target.value)}
                         />
                         </InputGroup>
                     </Form>
                 </div>
 
-                <BootstrapButton as={Link} to="/verification" style={{marginTop: "50px"}}>
+                <BootstrapButton as={Link} to="/verification" state={{ facebook: fbURL, twitter: twitterAcc, reddit: redditAcc }} style={{marginTop: "50px"}}>
                     Explore!
                 </BootstrapButton>
             </div>
@@ -77,7 +80,7 @@ export default function Home() {
                 fields="name,email,picture"
                 scope="public_profile"
                 autoLoad={false}
-                callback={responseFacebook} /></div>
+                callback={() => {}} /></div>
             
 
             <p style={{position: "absolute", bottom: "20px", left: "0px", right: "0px", marginLeft: "auto", marginRight: "auto",}}>

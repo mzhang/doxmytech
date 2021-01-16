@@ -5,14 +5,16 @@ import Card from "react-bootstrap/Card"
 import FacebookLogin from 'react-facebook-login';
 import Button from "react-bootstrap/Button"
 
-export default function Verification() {
+export default function Verification(props) {
     const [fbData, setFBData] = useState('');
     const responseFacebook = (response) => {
         if (response.accessToken) setFBData(response);
         console.log(response);
     }
-
-
+    
+    // You can access the user's twitter/facebook/reddit using props.location.state
+    // For example, props.location.state.reddit gives the user's supposed reddit username
+    
     return (
         <div>
             <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
