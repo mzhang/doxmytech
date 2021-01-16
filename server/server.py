@@ -1,6 +1,7 @@
 from flask import Flask,make_response,jsonify,send_file
 import requests 
 import json, csv, io
+from wordcloud import WordCloud
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
@@ -23,11 +24,11 @@ def getRedditJSON(username):
     
 def getRedditCSV(username):
     redditRes = requests.get('https://api.pushshift.io/reddit/search/comment/?author='+username+'&size=100')
-    out = "subreddit, created_time, content"
+    out = "subreddit, created_time, content\n"
     for post in redditRes.json()["data"]:
         out += post["subreddit"] + ","
         out += str(post["created_utc"]) + ","
-        out += post["body"] + "\n"
+        out += post["body"].replace(",", " ").replace("\n", " ") + "\n"
         
     return out
 
@@ -48,8 +49,6 @@ def redditCSV(username):
     response.headers['Content-Disposition'] = 'attachment; filename='+username+'.csv' 
     response.mimetype='text/csv'
     return response
-
-from wordcloud import WordCloud
 
 @app.route('/redditCloud/<username>')
 def redditCloud(username):
