@@ -7,6 +7,7 @@ import Navbar from "./components/navbar";
 import Home from "./pages/home";
 import About from "./pages/about";
 import Privacy from "./pages/privacy";
+import Verification from "./pages/verification";
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
         <Home path="/" />
         <About path="/about" />
         <Privacy path="/privacy" />
+        <Verification path="/verification" />
       </Router>
     </div>
   );

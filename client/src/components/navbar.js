@@ -18,7 +18,7 @@ export default function Navbar() {
                     <BootstrapNavbar.Collapse className="justify-content-end" style={{marginRight: "0px"}}>
                         <Nav>
                             <Nav.Link as={Link} to="/about">About</Nav.Link>
-                            <Nav.Link as={Link} to="/privacy">Privacy</Nav.Link>                  
+                            <Nav.Link as={Link} to="/privacy">Privacy</Nav.Link> 
                         </Nav>
                     </BootstrapNavbar.Collapse>
                 </BootstrapNavbar> 

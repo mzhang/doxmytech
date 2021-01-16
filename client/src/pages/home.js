@@ -1,5 +1,6 @@
 import React from "react";
 import "./home.css"
+import { Link } from "@reach/router";
 
 import Form from "react-bootstrap/Form"
 import InputGroup from "react-bootstrap/InputGroup"
@@ -62,7 +63,7 @@ export default function Home() {
                     </Form>
                 </div>
 
-                <BootstrapButton style={{marginTop: "50px"}}>
+                <BootstrapButton as={Link} to="/verification" style={{marginTop: "50px"}}>
                     Explore!
                 </BootstrapButton>
             </div>
