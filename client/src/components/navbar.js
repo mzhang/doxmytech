@@ -16,12 +16,8 @@ export default function Navbar() {
                 </Link>
                 
                 <Nav className="mr-auto">
-                    <Link to="/about">
-                        <p style={{color: "white"}}>About</p>
-                    </Link>
-                    <Link to="/privacy">
-                    <p style={{color: "white"}}>Privacy</p>
-                    </Link>                        
+                    <Nav.Link as={Link} to="/about">About</Nav.Link>
+                    <Nav.Link as={Link} to="/privacy">Privacy</Nav.Link>                  
                 </Nav>
                 </BootstrapNavbar>
             </Container>
