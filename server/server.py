@@ -7,6 +7,7 @@ app.config["DEBUG"] = True
 
 import os
 from dotenv import load_dotenv
+import facebookCheck
 
 load_dotenv()
 twitter_key = os.getenv('TWITTER_KEY')
