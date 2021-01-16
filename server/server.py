@@ -53,7 +53,7 @@ from wordcloud import WordCloud
 
 @app.route('/redditCloud/<username>')
 def redditCloud(username):
-    cloud = WordCloud().generate(getRedditText(username)).to_file("/clouds/"+username+".jpg")
-    return send_file("/clouds/"+username+".jpg", attachment_filename=username+".jpg")
+    cloud = WordCloud().generate(getRedditText(username)).to_file(username+".jpg")
+    return send_file(username+".jpg", attachment_filename=username+".jpg")
 
 app.run()
