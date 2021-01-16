@@ -4,6 +4,12 @@ import json, csv, io
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+twitter_key = os.getenv('TWITTER_KEY')
+
 @app.route('/hello', methods=['GET'])
 def hello_world():
     return 'Hello World!'
