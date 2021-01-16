@@ -3,6 +3,7 @@ import "./verification.css"
 
 import Card from "react-bootstrap/Card"
 import FacebookLogin from 'react-facebook-login';
+import Button from "react-bootstrap/Button"
 
 export default function Verification() {
     const [fbData, setFBData] = useState('');
@@ -41,7 +42,8 @@ export default function Verification() {
                         <Card.Text>
                             Add the line <code>DoxMy.Tech</code> to your Twitter bio to give us permission!
                         </Card.Text>
-
+                        
+                        <Button variant="primary" size="lg" active>Verify my Twitter bio</Button>
                         
                     </Card.Body>
                 </Card>
