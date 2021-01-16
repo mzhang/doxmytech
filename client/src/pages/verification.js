@@ -4,6 +4,7 @@ import "./verification.css"
 import Card from "react-bootstrap/Card"
 import FacebookLogin from 'react-facebook-login';
 import Button from "react-bootstrap/Button"
+import axios from "axios";
 
 //import NodeFetch from "node-fetch";
 
@@ -13,17 +14,17 @@ export default function Verification(props) {
         if (response.accessToken) setFBData(response);
         console.log(response["id"])
 
-        const response2 = await fetch("http://localhost:5000/facebookCheck", { 
-            method:"post",
-            body: JSON.stringify({
+        const res = await axios({
+            method: 'post',
+            url: 'http://localhost:5000/facebookCheck',
+            data: {
                 "profileLink": props.location.state.facebook,
                 "accessCode": response["accessToken"],
                 "profileID": response["id"]
-            })
+            }
         })
-        console.log(response2)
-        const data = await response2.json()
-        console.log(data)
+
+        console.log(res.data);
     }
     
     // You can access the user's twitter/facebook/reddit using props.location.state
