@@ -1,6 +1,6 @@
 from app import app
 
-from flask import Flask
+from flask import make_response
 from flask import jsonify
 import requests
 import json, csv
@@ -38,9 +38,12 @@ def getTimeline(username):
             i['text'] = i['text'].replace(",", " ")
             i['text'] = i['text'].replace("\n", "")
             data.append({'text':i['text'], 'created_at':i['created_at']})
-    with open('tweets.csv','w',encoding='utf8', newline='') as output_file:
-        fc=csv.DictWriter(output_file,fieldnames=data[0].keys(),)
-        fc.writeheader()
-        fc.writerows(data)
-    
-    return 
+    csvtext = "text,created_at \n"
+    for i in data:
+        csvtext += i['text'] + ", " + i['created_at'] + "\n"
+    response = make_response(csvtext)
+    response.headers['Content-Disposition'] = 'attachment; filename='+username+'.csv'
+    response.mimetype='text/csv'
+    return response
+
+
