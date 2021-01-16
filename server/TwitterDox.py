@@ -21,6 +21,16 @@ def getTimeline(userid):
         i['text'] = i['text'].replace(",", " ")
         i['text'] = i['text'].replace("\n", "")
         data.append({'text':i['text'], 'created_at':i['created_at']})
+    for i in range(31):
+        try:
+            paginate = TimelineRes["meta"]["next_token"]
+        except:
+            break
+        TimelineRes = requests.get('https://api.twitter.com/2/users/' + userid + '/tweets?max_results=100&pagination_token='+paginate+'&tweet.fields=created_at',headers=headers).json()
+        for i in TimelineRes['data']:
+            i['text'] = i['text'].replace(",", " ")
+            i['text'] = i['text'].replace("\n", "")
+            data.append({'text':i['text'], 'created_at':i['created_at']})
     with open('tweets.csv','w',encoding='utf8', newline='') as output_file:
         fc=csv.DictWriter(output_file,fieldnames=data[0].keys(),)
         fc.writeheader()
