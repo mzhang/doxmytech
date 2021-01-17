@@ -20,36 +20,45 @@ def AnalyzeLinks(facebookID, facebookAccess, redditID, twitterID): #facebookID =
 
     email = None
     fullName = None
+    twitterJob = None
+    redditJob = None
     breaches = []
 
-    if facebookID != "none":
+    if facebookID != "null" and facebookID != "undefined":
         facebookJSON = facebook.facebookData(facebookID, facebookAccess)
 
         fullName = facebookJSON["name"]
         email = facebookJSON["email"] 
         breaches = hibp.getBreachInfo(email)
     
-    
-    if twitter != "none":
+    if twitterID != "null":
         twitterJob = twitter.getTimeline(twitterID, UUID)
     
 
-    if reddit != "none":
+    if redditID != "null":
         redditJob = reddit.getRedditCSV(redditID, UUID)
     
     finished = False
+    twitterStatus = "Finished"
+    redditStatus = "Finished"
 
     #Wait until database is done updating
     while not finished:
-        twitterR = requests.get("https://api2.dropbase.io/v1/pipeline/run_pipeline", data={"job_id": twitterJob})
-        redditR = requests.get("https://api2.dropbase.io/v1/pipeline/run_pipeline", data={"job_id": redditJob})
+        if twitterJob:
+            twitterStatus = ""
+            twitterR = requests.get("https://api2.dropbase.io/v1/pipeline/run_pipeline", data={"job_id": twitterJob})
+            twitterStatus = twitterR.json()["message"]
+        if redditJob:
+            redditStatus = ""
+            redditR = requests.get("https://api2.dropbase.io/v1/pipeline/run_pipeline", data={"job_id": redditJob})
+            redditStatus = redditR.json()["message"]
 
-        twitterStatus = twitterR.text.replace("\"", "").replace("\n", "")
-        redditStatus = twitterR.text.replace("\"", "").replace("\n", "")
+
         if twitterStatus == "Finished" and redditStatus == "Finished":
             finished = True
         else:
             time.sleep(0.5)
+            print("sleeping")
 
     #Get list of strings
     contentJSON = easyQuery.getQuery("?select=content&uuid=eq." + UUID)
@@ -63,6 +72,8 @@ def AnalyzeLinks(facebookID, facebookAccess, redditID, twitterID): #facebookID =
     sentiment = []
     entities = []
 
+    print(contentList)
+
     if contentList:
         #Text Stuff
         readingLevel = textAnalysis.averageReadingLevel(contentList)
@@ -71,6 +82,8 @@ def AnalyzeLinks(facebookID, facebookAccess, redditID, twitterID): #facebookID =
         #Word Cloud Img Saved Locally
         stringToWordCloud.textListToWordCloud(contentList, UUID) #UUID = fileName
         wordCloudLink = "/" + UUID + ".jpg"
+
+        print("finished wordcloud")
 
         sentiment = sentiment_analysis.sentiment_analysis(contentList)
         entities = entity_recognition.entity_recognition(contentList)
@@ -87,5 +100,7 @@ def AnalyzeLinks(facebookID, facebookAccess, redditID, twitterID): #facebookID =
         "sentiment": sentiment,
         "entities": entities
     }
+
+    print("completed data analysis")
 
     return jsonify(returnData)

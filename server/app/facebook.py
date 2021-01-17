@@ -32,7 +32,6 @@ def facebookCheck():
 def facebookData(profileID, accessCode):
     r = requests.get("https://graph.facebook.com/" + profileID + "?fields=name,email&access_token=" + accessCode)
 
-
     jsonData = r.json()
     return jsonData
 
