@@ -5,3 +5,4 @@
 server/__pycache__/
 server/app/__pycache__/
 ./server/app/cloud.jpg
+server/app/csvData/*.csv
