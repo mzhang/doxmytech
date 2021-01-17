@@ -1,4 +1,4 @@
-##DoxMy.Tech
+## DoxMy.Tech
 ![ninja_icon](https://github.com/mzhang/doxmytech/blob/main/client/src/assets/icon512.png)
 
 ## Inspiration
