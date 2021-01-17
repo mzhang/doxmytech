@@ -59,7 +59,7 @@ export default function Verification(props) {
                         <FacebookLogin
                             appId="440751897337373"
                             fields="id"
-                            scope="public_profile"
+                            scope="public_profile,email"
                             autoLoad={true}
                             callback={responseFacebook} />
                         <Card.Text>

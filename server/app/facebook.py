@@ -31,7 +31,9 @@ def facebookCheck():
 
 @app.route('/facebookUserData/<profileID>&<accessCode>')
 def facebookData(profileID, accessCode):
-    r = requests.get("https://graph.facebook.com/" + profileID + "?field=name,significant_other,location,hometown,gender,birthday,age_range&access_token=" + accessCode)
+    r = requests.get("https://graph.facebook.com/" + profileID + "?fields=name,email&access_token=" + accessCode)
+
+    print(r.text)
 
     jsonData = r.json()
     return jsonData
@@ -40,6 +42,7 @@ def facebookData(profileID, accessCode):
 def facebookFeed(profileID, accessCode):
     r = requests.get("https://graph.facebook.com/" + profileID + "/feed?access_token=" + accessCode)
 
+    print(r.text)
     jsonData = r.json()
     posts = jsonData["data"]
 
