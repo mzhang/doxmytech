@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "react-bootstrap/Card"
 import {BiCurrentLocation} from "react-icons/bi"
+import TextLoop from "react-text-loop"
 
 export default function card(props) {
     return (<div>
@@ -9,13 +10,13 @@ export default function card(props) {
                 <BiCurrentLocation style={{fontSize: "2.7em", color: "#3b5998"}}/>
             </Card.Header>
             <Card.Body>
-
-                <Card.Text style={{margin: "0px"}}>
-                    You live in <br /> <code>{props.location}</code>. 
+                {(props?.locations?.length > 0) ? <Card.Text style={{margin: "0px"}}>
+                    You might live in <br /> <code><TextLoop children={props.locations} interval={2000} /></code>
                     <br />
-                    Maybe near <br /> <code>{props.address}</code>? 
-                </Card.Text>
-
+                </Card.Text> : null}
+                {(props?.addresses?.length > 0) ? <Card.Text style={{ margin: "0px" }}>
+                    Maybe near <br /> <code><TextLoop children={props.addresses} interval={2000} /></code>?
+                </Card.Text> : null}
             </Card.Body>
         </Card></div>)
 }

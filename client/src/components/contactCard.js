@@ -11,11 +11,14 @@ export default function card(props) {
             </Card.Header>
             <Card.Body>
 
-                <Card.Text style={{margin: "0px"}}>
-                    You probably use <br /> <code>{props.email}</code>. 
+                {(props.email) ? <Card.Text style={{margin: "0px"}}>
+                    You probably use <br /> <code>{props.email}</code>
                     <br />
-                    Would your phone ring if we dialed <code><TextLoop children={props.phoneNumbers} interval={1000} /> </code>? 
-                </Card.Text>
+                </Card.Text> : null}
+                
+                {(props?.phoneNumbers?.length > 0) ? <Card.Text style={{ margin: "0px" }}>
+                    Would your phone ring if we dialed <code><TextLoop children={props.phoneNumbers} interval={2000} /> </code>?
+                </Card.Text> : null}
 
             </Card.Body>
         </Card></div>)
