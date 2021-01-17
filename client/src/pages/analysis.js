@@ -8,6 +8,7 @@ import TextStatsCard from "../components/textStatsCard.js";
 import LinegraphCard from "../components/linegraphCard.js"
 import WordCloudCard from "../components/wordCloudCard";
 import BreachCard from "../components/breachCard";
+import HourFrequencyCard from "../components/hourFrequencyCard.js"
 import "./analysis.css"
 
 export default function Analysis() {
@@ -158,6 +159,8 @@ export default function Analysis() {
                 </Row>
                 
                 <LinegraphCard data={data.sentiment}/>
+                <HourFrequencyCard data={data.hourCount}/>
+
                 <Row>
                     <Col><WordCloudCard imageLink={data.wordCloudLink}/></Col>
                 </Row>
