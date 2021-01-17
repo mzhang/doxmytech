@@ -152,7 +152,7 @@ export default function Analysis() {
             <h1>Hello, {data.fullName}</h1>
             <h3>Here's what we got on you.</h3>
             <br/>
-            <Container style={{backgroundColor: '#f1f1f1'}}>
+            <Container style={{paddingBottom: "1em", backgroundColor: '#f1f1f1'}}>
                 <Row>
                     <Col><AnalysisCard addresses={data.entities["Address"]} locations={data.entities["Location"]}/></Col>
                     <Col><ContactCard email={data.email} phoneNumbers={data.entities["Phone Number"]}/></Col>
@@ -167,7 +167,7 @@ export default function Analysis() {
                     <Col><WordCloudCard imageLink={data.wordCloudLink}/></Col>
                 </Row>
                 <Row>
-                    <BreachCard data={data.breaches}/>
+                    <Col><BreachCard data={data.breaches}/></Col>
                 </Row>
             </Container>
         </div>

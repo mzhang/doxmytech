@@ -5,7 +5,7 @@ export default function SingleBreachView(props) {
     return (
         <div>
             <Card>
-                <Card.Header style={{ backgroundColor: "#191919" }}><Image src={props.data.LogoPath} style={{ height: "25px" }} /></Card.Header>
+                <Card.Header style={{ backgroundColor: "#3b5998" }}><Image src={props.data.LogoPath} style={{ height: "25px" }} /></Card.Header>
                 <Card.Body>
                     <Card.Title>{props.data.Name} on {props.data.BreachDate}</Card.Title>
                     <Card.Text dangerouslySetInnerHTML={{ __html: props.data.Description }} />
