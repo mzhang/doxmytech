@@ -25,7 +25,7 @@ export default function Home() {
 
                 <div class="platformInput">
                     <AiFillFacebook style={{fontSize: "2.7em", color: "#3b5998", marginRight: "5px"}} />
-                    <Form inline>
+                    <Form inline onSubmit={(e) => e.preventDefault()}>
                         <InputGroup>
                         <InputGroup.Prepend>
                             <InputGroup.Text id="basic-addon1">
@@ -44,7 +44,7 @@ export default function Home() {
 
                 <div class="platformInput">
                     <FcReddit style={{fontSize: "2.7em", marginRight: "10px"}} />
-                    <Form inline>
+                    <Form inline onSubmit={(e) => e.preventDefault()}>
                         <InputGroup>
                         <InputGroup.Prepend>
                             <InputGroup.Text id="basic-addon1">u/</InputGroup.Text>
@@ -61,7 +61,7 @@ export default function Home() {
 
                 <div class="platformInput">
                     <ImTwitter style={{fontSize: "2.5em", color: "#1DA1F2", marginRight: "10px"}}/>
-                    <Form inline>
+                    <Form inline onSubmit={(e) => e.preventDefault()}>
                         <InputGroup>
                         <InputGroup.Prepend>
                             <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
