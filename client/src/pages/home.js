@@ -7,7 +7,6 @@ import Form from "react-bootstrap/Form"
 import InputGroup from "react-bootstrap/InputGroup"
 import FormControl from "react-bootstrap/FormControl"
 import BootstrapButton from "react-bootstrap/Button"
-import { Card } from "react-bootstrap"
 
 import { AiFillFacebook, AiOutlineLink } from "react-icons/ai";
 import { ImTwitter } from "react-icons/im";
