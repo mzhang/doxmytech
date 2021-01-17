@@ -26,7 +26,7 @@ class SplineChart extends Component {
                 markerSize: "0.5",
 				yValueFormatString: "0 'Posts'",
 				xValueFormatString: "DDD",
-				type: "spline",
+				type: "splineArea",
 				dataPoints: this.props.weekDayCount
 			}]
 		}
