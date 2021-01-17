@@ -1,5 +1,6 @@
 import React from "react";
 import {Card, Col, Row, Container} from "react-bootstrap/"
+import TextLoop from "react-text-loop"
 
 export default function analysisPersonal(props) {
 
@@ -12,7 +13,7 @@ export default function analysisPersonal(props) {
                 </Row>
                 <Row>
                     <Col md>Your phone number:</Col>
-                    <Col md>{props.number}</Col>
+                    <Col md><TextLoop children={props.phoneNumbers} interval={1000}/></Col>
                 </Row>
                 <Row>
                     <Col md>Your address:</Col>

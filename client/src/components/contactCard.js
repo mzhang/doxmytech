@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "react-bootstrap/Card"
 import {AiFillContacts} from "react-icons/ai"
+import TextLoop from "react-text-loop"
 
 export default function card(props) {
     return (<div>
@@ -13,7 +14,7 @@ export default function card(props) {
                 <Card.Text style={{margin: "0px"}}>
                     You probably use <br /> <code>{props.email}</code>. 
                     <br />
-                    Would your phone ring if we dialed <code>{props.number}</code>? 
+                    Would your phone ring if we dialed <code><TextLoop children={props.phoneNumbers} interval={1000} /> </code>? 
                 </Card.Text>
 
             </Card.Body>
