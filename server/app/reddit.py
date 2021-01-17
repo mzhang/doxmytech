@@ -3,6 +3,7 @@ from app import app
 from flask import Flask
 from flask import make_response,jsonify,send_file,request
 import requests, json, csv, io, uuid
+from app import dropbase
 
 def getRedditJSON(username):
     redditRes = requests.get('https://api.pushshift.io/reddit/search/comment/?author='+username+'&size=100')
@@ -20,7 +21,8 @@ def getRedditCSV(username):
         out += str(post["created_utc"]) + ","
         out += post["body"].replace(",", " ").replace("\n", " ").replace("\r", "") + ","
         out +=  UniqueID + "\n"
-        
+    
+    dropbase.uploadFile("reddit", out)
     return out
 
 def getRedditText(username):
