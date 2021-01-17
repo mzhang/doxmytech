@@ -12,7 +12,7 @@ export default function card(props) {
                     <AiFillContacts style={{ fontSize: "2.7em", color: "#3b5998" }} />
                 </Card.Header>
                 <Card.Body>
-                    We found no contact info :)
+                    <p style={{ margin: "0px" }}>We found no contact info - good job :)</p>
                 </Card.Body>
             </Card>
         )

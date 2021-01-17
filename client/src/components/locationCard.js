@@ -11,7 +11,7 @@ export default function card(props) {
                     <BiCurrentLocation style={{ fontSize: "2.7em", color: "#3b5998" }} />
                 </Card.Header>
                 <Card.Body>
-                    We found no location info :)
+                    <p style={{ margin: "0px" }}>We found no contact info - good job :)</p>
                 </Card.Body>
             </Card>
         )
