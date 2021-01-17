@@ -24,7 +24,7 @@ export default function Home() {
             <Card>
             <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
                 <h1>DoxMy.tech</h1>
-                <h2>Insert short tagline about project</h2>
+                <h2>How much can a stranger find out about you?</h2>
 
                 <div class="platformInput">
                     <AiFillFacebook style={{fontSize: "2.7em", color: "#3b5998", marginRight: "5px"}} />
