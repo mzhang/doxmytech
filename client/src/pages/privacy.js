@@ -9,7 +9,7 @@ export default function Privacy() {
 
                 <br/>
 
-                <p>In order to explore the information that is publicly available on your social medias, you will need to login with Facebook and change your Twitter/Reddit bio.</p>
+                <p>In order to explore the information that is publicly available on your social medias, please verify your identity by logging in with Facebook and adding to your Twitter bio.</p>
 
                 <br/>
 
