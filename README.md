@@ -1,3 +1,6 @@
+##DoxMy.Tech
+![ninja_icon](https://github.com/mzhang/doxmytech/blob/main/client/src/assets/icon512.png)
+
 ## Inspiration
 Data breaches have become increasingly more common in the past few years, leaking precious private data that users gave to sites in confidence. However, not all data breaches are from sites getting hacked; the [very recent Parler leak](https://www.techradar.com/news/massive-parler-data-leak-exposes-millions-of-posts-messages-and-videos) showed that a lot of possibly private info was available publicly on the internet, waiting for someone to discover it. In Parler's case, they weren't "hacked" in the traditional sense. Rather, they failed to strip EXIF data from images uploaded by users, allowing attackers to all download images sequentially and read said EXIF data. EXIF contains significant metadata about the photo, including the GPS location of where the photo was taken. Many photos were potentially taken inside the user's home, causing sensitive information of millions of individuals has been compromised.
 
