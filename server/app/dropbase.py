@@ -28,7 +28,7 @@ def uploadFile(media, csvFilePath):
         return jobId
 
 def GetTableData(token, table):
-    r = requests.get(DROPBASE_REST_API + "/" + table, headers={"Authorization": "Bearer " + DROPBASE_REST_SECRET})
+    r = requests.get(os.getenv("DROPBASE_REST_API") + "/" + table, headers={"Authorization": "Bearer " + os.getenv("DROPBASE_REST_SECRET")})
     return json.loads(r.text)
 
 # uploadFile('twitter', './csvData/tweets.csv')

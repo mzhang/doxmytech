@@ -29,7 +29,6 @@ def facebookCheck():
 
     return jsonify(response)
 
-@app.route('/facebookUserData/<profileID>&<accessCode>')
 def facebookData(profileID, accessCode):
     r = requests.get("https://graph.facebook.com/" + profileID + "?fields=name,email&access_token=" + accessCode)
 

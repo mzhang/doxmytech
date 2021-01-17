@@ -18,4 +18,16 @@ def toWordCloud():
     cloud.to_file("./app/cloud.jpg")
     return send_file("cloud.jpg", as_attachment=True, attachment_filename='cloud.jpg')
 
+def textListToWordCloud(stringList, fileName):
+    wc = WordCloud(width = 800, height = 800, 
+                background_color ='white', 
+                min_font_size = 10)
+
+    content = ""
+    for s in stringList:
+        content += s
+    cloud = wc.generate(content)
+
+    cloud.to_file("./app/"+fileName+".jpg")
+
 
