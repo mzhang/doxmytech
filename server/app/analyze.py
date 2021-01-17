@@ -29,16 +29,16 @@ def AnalyzeLinks(facebookID, facebookAccess, redditID, twitterID): #facebookID =
         facebookJSON = facebook.facebookData(facebookID, facebookAccess)
 
         fullName = facebookJSON["name"]
-        email = facebookJSON["email"] 
+        email = facebookJSON["email"]
         breaches = hibp.getBreachInfo(email)
-    
+
     if twitterID != "null":
         twitterJob = twitter.getTimeline(twitterID, UUID)
-    
+
 
     if redditID != "null":
         redditJob = reddit.getRedditCSV(redditID, UUID)
-    
+
     finished = False
     twitterStatus = "Finished"
     redditStatus = "Finished"
@@ -68,15 +68,16 @@ def AnalyzeLinks(facebookID, facebookAccess, redditID, twitterID): #facebookID =
     #Get list of strings
     contentJSON = easyQuery.getQuery("?select=content,timestamp&uuid=eq." + UUID)
     contentList = []
-    monthContentList = [[] for i in range(12)] 
+    monthContentList = [[] for i in range(12)]
     for content in contentJSON:
         temp = []
         month = int(datetime.utcfromtimestamp(content["timestamp"]).strftime("%m"))
         monthContentList[month-1].append(content["content"])
 
     for content in contentJSON:
-        temp = content["content"]
-        contentList.append(temp.replace("gt", "").replace("lt",""))
+        tempString = content["content"]
+        tempString = tempString.replace("lt", "").replace("gt", "g")
+        contentList.append(tempString)
 
     readingLevel = None
     stringLength = None
@@ -98,9 +99,11 @@ def AnalyzeLinks(facebookID, facebookAccess, redditID, twitterID): #facebookID =
         print("finished wordcloud")
 
         for month in monthContentList:
+            print(month)
             sentiment.append(sentiment_analysis.sentiment_analysis(month))
         entities = entity_recognition.entity_recognition(contentList)
 
+    print(sentiment)
 
     returnData = {
         "UUID": UUID,

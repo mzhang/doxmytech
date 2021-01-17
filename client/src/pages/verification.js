@@ -52,6 +52,8 @@ export default function Verification(props) {
     }
 
     const BothVerified = async () => {
+        console.log("both verified")
+
         if (props.location.state.reddit === "") props.location.state.reddit = "null"
         if (props.location.state.twitter === "") props.location.state.twitter = "null"
         if (fbData.id === "") fbData.id = "null"
