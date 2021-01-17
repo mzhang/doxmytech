@@ -11,6 +11,7 @@ from app import reddit
 from app import textAnalysis
 from app import hibp
 from app import sentiment_analysis
+from app import entity_recognition
 
 @app.route("/analyzeLinks/<facebookID>&<facebookAccess>&<redditID>&<twitterID>")
 def AnalyzeLinks(facebookID, facebookAccess, redditID, twitterID): #facebookID = id, facebookAccess = access, reddit = username, twitter = username
@@ -18,6 +19,7 @@ def AnalyzeLinks(facebookID, facebookAccess, redditID, twitterID): #facebookID =
     print(f"UUID: {UUID}")
 
     email = None
+    fullName = None
     breaches = []
 
     if facebookID != "none":
@@ -59,6 +61,7 @@ def AnalyzeLinks(facebookID, facebookAccess, redditID, twitterID): #facebookID =
     stringLength = None
     wordCloudLink = None
     sentiment = []
+    entities = []
 
     if contentList:
         #Text Stuff
@@ -69,6 +72,20 @@ def AnalyzeLinks(facebookID, facebookAccess, redditID, twitterID): #facebookID =
         stringToWordCloud.textListToWordCloud(contentList, UUID) #UUID = fileName
         wordCloudLink = "/" + UUID + ".jpg"
 
-        sentiment_analysis.sentiment_analysis(contentList)
+        sentiment = sentiment_analysis.sentiment_analysis(contentList)
+        entities = entity_recognition.entity_recognition(contentList)
 
-    return jsonify(contentJSON)
+
+    returnData = {
+        "UUID": UUID,
+        "email": email,
+        "fullName": fullName,
+        "breaches": breaches,
+        "readingLevel": readingLevel,
+        "stringLength": stringLength,
+        "wordCloudLink": wordCloudLink,
+        "sentiment": sentiment,
+        "entities": entities
+    }
+
+    return jsonify(returnData)
