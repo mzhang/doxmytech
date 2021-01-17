@@ -30,7 +30,7 @@ def getTimeline(username):
     data = list()
     for i in TimelineRes['data']:
         i['text'] = i['text'].replace(",", " ")
-        i['text'] = i['text'].replace("\n", "")
+        i['text'] = i['text'].replace("\n", "").replace("\r", "")
         data.append({'text':i['text'], 'created_at':i['created_at']})
     for i in range(31):
         try:
