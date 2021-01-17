@@ -18,7 +18,7 @@ export default function card(props) {
     } else if (props.averageChars > 50) {
         readingScore = "9th";
     } else if (props.averageChars > 40) {
-        readingScore = "10th - 11th";
+        readingScore = "10th to 11th";
     } else if (props.averageChars > 30) {
         readingScore = "12th";
     } else {
@@ -33,7 +33,7 @@ export default function card(props) {
             <Card.Body>
 
                 <Card.Text style={{margin: "0px"}}>
-                    You talk on the internet <code>{props.averageChars}</code> characters at a time. 
+                    You talk on the internet <code>{props.averageChars.toFixed("2")}</code> characters at a time. 
                     <br />
                     And you speak at <code>{readingScore}</code> grade reading level. 
                 </Card.Text>

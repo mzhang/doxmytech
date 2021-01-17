@@ -4,6 +4,21 @@ import {AiFillContacts} from "react-icons/ai"
 import TextLoop from "react-text-loop"
 
 export default function card(props) {
+    if (!props?.email && !props.phoneNumbers?.length) {
+        console.log('hi');
+        return (
+            <Card className="text-center top-margins">
+                <Card.Header>
+                    <AiFillContacts style={{ fontSize: "2.7em", color: "#3b5998" }} />
+                </Card.Header>
+                <Card.Body>
+                    We found no contact info :)
+                </Card.Body>
+            </Card>
+        )
+    }
+    console.log(props.phoneNumbers);
+
     return (<div>
         <Card className="text-center top-margins">
             <Card.Header>
