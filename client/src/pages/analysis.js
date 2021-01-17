@@ -4,6 +4,7 @@ import AnalysisPersonal from "../components/analysisPersonal.js";
 import AnalysisCard from "../components/locationCard.js";
 import ContactCard from "../components/contactCard.js";
 import TextStatsCard from "../components/textStatsCard.js";
+import Linegraph from "../components/linegraph.js"
 import "./analysis.css"
 
 export default function Analysis() {
@@ -26,7 +27,11 @@ export default function Analysis() {
                     <Col><TextStatsCard averageChars={"123"} readingLevel={"7051231234"}/></Col>
                     <Col>3 of 3</Col>
                 </Row>
+                
+                <Linegraph />
             </Container>
+
+
         </div>
     )
 }
