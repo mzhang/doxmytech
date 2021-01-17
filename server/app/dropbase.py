@@ -31,9 +31,6 @@ def uploadFile(media, csvData):
 
     uploadRes = requests.put(url, data=open(filepath, 'rb'))
     if (uploadRes.status_code == 200):
-        print(jobId)
+        print(f"jobId: {jobId}")
         return jobId
     
-def GetTableData(token, table):
-    r = requests.get(os.getenv("DROPBASE_REST_API") + "/" + table, headers={"Authorization": "Bearer " + os.getenv("DROPBASE_REST_SECRET")})
-    return json.loads(r.text)

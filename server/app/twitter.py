@@ -22,9 +22,7 @@ def getBio(username):
     bio=BioRes['data']['description']
     return bio
 
-@app.route("/twitterTimeline/<username>")
-def getTimeline(username):
-    UniqueID = str(uuid.uuid4())
+def getTimeline(username, UniqueID):
 
     userid = getTwitterID(username)
     TimelineRes = requests.get('https://api.twitter.com/2/users/'+userid+'/tweets?max_results=100&tweet.fields=created_at', headers = headers).json()
@@ -47,10 +45,7 @@ def getTimeline(username):
     csvtext = "text,created_at,uuid\n"
     for i in data:
         csvtext += i['text'] + "," + i['created_at'] + "," + UniqueID + "\n"
-    dropbase.uploadFile("twitter", csvtext)
-    response = make_response(csvtext)
-    response.headers['Content-Disposition'] = 'attachment; filename='+username+'.csv'
-    response.mimetype='text/csv'
-    return response
+    return dropbase.uploadFile("twitter", csvtext)
+
 
 
