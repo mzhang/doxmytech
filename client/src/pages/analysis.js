@@ -1,7 +1,6 @@
 import React from "react";
 import {Col, Row, Container} from "react-bootstrap/"
 
-import AnalysisPersonal from "../components/analysisPersonal.js";
 import AnalysisCard from "../components/locationCard.js";
 import ContactCard from "../components/contactCard.js";
 import TextStatsCard from "../components/textStatsCard.js";

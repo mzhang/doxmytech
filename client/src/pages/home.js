@@ -7,11 +7,11 @@ import Form from "react-bootstrap/Form"
 import InputGroup from "react-bootstrap/InputGroup"
 import FormControl from "react-bootstrap/FormControl"
 import BootstrapButton from "react-bootstrap/Button"
+import { Card } from "react-bootstrap"
 
-import { AiFillFacebook } from "react-icons/ai";
+import { AiFillFacebook, AiOutlineLink } from "react-icons/ai";
 import { ImTwitter } from "react-icons/im";
 import { FcReddit } from "react-icons/fc";
-import { AiOutlineLink } from "react-icons/ai";
 
 export default function Home() {
     const [fbURL, setFbURL] = useState('');
@@ -60,7 +60,7 @@ export default function Home() {
                 </div>
 
                 <div class="platformInput">
-                    <ImTwitter style={{fontSize: "2.5em", color: "#1DA1F2", marginRight: "10px"}}/>
+                    <ImTwitter style={{fontSize: "2.7em", color: "#1DA1F2", marginRight: "10px"}}/>
                     <Form inline>
                         <InputGroup>
                         <InputGroup.Prepend>

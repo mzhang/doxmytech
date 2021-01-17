@@ -4,6 +4,8 @@ import axios from "axios";
 
 import {FacebookCard, TwitterCard, SuccessCard} from "../components/card.js" 
 import {navigate} from "@reach/router"
+import ClipLoader from "react-spinners/HashLoader";
+// import { Card, Image } from "react-bootstrap"
 
 
 //import NodeFetch from "node-fetch";
@@ -82,8 +84,12 @@ export default function Verification(props) {
         </div>)
     }
     const loadingDisplay = () => {
-        return ( <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-        <h1>loading LOADING...</h1>
+        return ( <div style={{position: 'absolute', left: '50%', top: '50%',
+        transform: 'translate(-50%, -50%)'}}>
+            <h2>Fetching your data. <br />
+            <br />This may take a few minutes for active social media users!
+            <br /><br /><br /><br />
+            <ClipLoader color={"#3b5998"} loading={true} size={150} /></h2>
         </div>)
     }
 
