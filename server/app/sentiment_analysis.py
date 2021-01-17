@@ -39,7 +39,10 @@ def sentiment_analysis(text):
     client = authenticate_client()
     sentiment = []
     for i in text:
+        if i == "":
+            continue
         sentiment.append(find_sentiment(client,[i]))
+    if sentiment == []:
+        return [0.0,1.0,0.0]
     aggregate = aggregate_sentiment(sentiment)
-    sentiment.insert(0,aggregate)
-    return sentiment
+    return aggregate
