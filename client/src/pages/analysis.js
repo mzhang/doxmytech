@@ -144,7 +144,7 @@ export default function Analysis() {
                 18
               ],
         "stringLength": 176.5943396226415,
-        "wordCloudLink": "2984491564600.jpg"
+        "wordCloudLink": "9575795429749.jpg"
     }`)
 
     return (
