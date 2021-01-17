@@ -41,4 +41,5 @@ def sentiment_analysis(text):
     for i in text:
         sentiment.append(find_sentiment(client,[i]))
     aggregate = aggregate_sentiment(sentiment)
-    return aggregate
+    sentiment.append(aggregate)
+    return sentiment
