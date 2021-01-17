@@ -26,7 +26,7 @@ class SplineChart extends Component {
 			},
 			data: [{
                 markerSize: "0.5",
-				yValueFormatString: "## 'Posts'",
+				yValueFormatString: "0 'Posts'",
 				xValueFormatString: "H TT",
 				type: "spline",
 				dataPoints: this.props.hourCount
