@@ -40,5 +40,3 @@ def entity_recognition(text):
             else:
                 entities["Phone Number"].append(entity.text)
     return entities
-
-    return entities
