@@ -2,6 +2,7 @@ from app import app
 from flask import Flask
 from flask import make_response,jsonify,send_file,request
 import requests, json, random, math, time
+from datetime import datetime
 
 from app import facebook
 from app import easyQuery
@@ -47,11 +48,15 @@ def AnalyzeLinks(facebookID, facebookAccess, redditID, twitterID): #facebookID =
         if twitterJob:
             twitterStatus = ""
             twitterR = requests.get("https://api2.dropbase.io/v1/pipeline/run_pipeline", data={"job_id": twitterJob})
-            twitterStatus = twitterR.json()["message"]
+            print(twitterR.text)
+            if "finished" in twitterR.text.lower():
+                twitterStatus = twitterR.json()["message"]
         if redditJob:
             redditStatus = ""
             redditR = requests.get("https://api2.dropbase.io/v1/pipeline/run_pipeline", data={"job_id": redditJob})
-            redditStatus = redditR.json()["message"]
+            print(redditR.text)
+            if "finished" in redditR.text.lower():
+                redditStatus = redditR.json()["message"]
 
 
         if twitterStatus == "Finished" and redditStatus == "Finished":
@@ -61,8 +66,14 @@ def AnalyzeLinks(facebookID, facebookAccess, redditID, twitterID): #facebookID =
             print("sleeping")
 
     #Get list of strings
-    contentJSON = easyQuery.getQuery("?select=content&uuid=eq." + UUID)
+    contentJSON = easyQuery.getQuery("?select=content,timestamp&uuid=eq." + UUID)
     contentList = []
+    monthContentList = [[] for i in range(12)] 
+    for content in contentJSON:
+        temp = []
+        month = int(datetime.utcfromtimestamp(content["timestamp"]).strftime("%m"))
+        monthContentList[month-1].append(content["content"])
+
     for content in contentJSON:
         contentList.append(content["content"])
 
@@ -85,7 +96,8 @@ def AnalyzeLinks(facebookID, facebookAccess, redditID, twitterID): #facebookID =
 
         print("finished wordcloud")
 
-        sentiment = sentiment_analysis.sentiment_analysis(contentList)
+        for month in monthContentList:
+            sentiment.append(sentiment_analysis.sentiment_analysis(month))
         entities = entity_recognition.entity_recognition(contentList)
 
 
@@ -101,6 +113,6 @@ def AnalyzeLinks(facebookID, facebookAccess, redditID, twitterID): #facebookID =
         "entities": entities
     }
 
-    print("completed data analysis")
+    print(jsonify(returnData))
 
     return jsonify(returnData)
