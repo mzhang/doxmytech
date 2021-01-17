@@ -29,16 +29,16 @@ def AnalyzeLinks(facebookID, facebookAccess, redditID, twitterID): #facebookID =
         facebookJSON = facebook.facebookData(facebookID, facebookAccess)
 
         fullName = facebookJSON["name"]
-        email = facebookJSON["email"] 
+        email = facebookJSON["email"]
         breaches = hibp.getBreachInfo(email)
-    
+
     if twitterID != "null":
         twitterJob = twitter.getTimeline(twitterID, UUID)
-    
+
 
     if redditID != "null":
         redditJob = reddit.getRedditCSV(redditID, UUID)
-    
+
     finished = False
     twitterStatus = "Finished"
     redditStatus = "Finished"
@@ -68,7 +68,7 @@ def AnalyzeLinks(facebookID, facebookAccess, redditID, twitterID): #facebookID =
     #Get list of strings
     contentJSON = easyQuery.getQuery("?select=content,timestamp&uuid=eq." + UUID)
     contentList = []
-    monthContentList = [[] for i in range(12)] 
+    monthContentList = [[] for i in range(12)]
     for content in contentJSON:
         temp = []
         month = int(datetime.utcfromtimestamp(content["timestamp"]).strftime("%m"))
@@ -77,7 +77,7 @@ def AnalyzeLinks(facebookID, facebookAccess, redditID, twitterID): #facebookID =
     for content in contentJSON:
         tempString = content["content"]
         tempString = tempString.replace("lt", "").replace("gt", "g")
-        contentList.append(content["content"])
+        contentList.append(tempString)
 
     readingLevel = None
     stringLength = None
