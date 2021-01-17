@@ -28,6 +28,6 @@ def textListToWordCloud(stringList, fileName):
         content += s
     cloud = wc.generate(content)
 
-    cloud.to_file("./app/"+fileName+".jpg")
+    return cloud.to_file("./app/"+fileName+".jpg")
 
 
