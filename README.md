@@ -46,3 +46,6 @@ Another major issue we faced was that the various APIs returned data in many dif
 
 ## What's next for [DoxMy.Tech](https://doxmy.tech/)
 Our next step is to increase the number of social media that we can support, with a focus on getting Facebook + Instagram data collection working. This will allow us to give more detailed information to the user and increase the accuracy of our analyses.
+
+## Authors
+[Aurik Datta](https://github.com/aurik-datta), [Sunny Zuo](https://github.com/sunny-zuo), [Wolf Van Dierdonck](https://github.com/WolfDierdonck), [Matt Zhang](https://github.com/mzhang)
