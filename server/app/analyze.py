@@ -105,6 +105,16 @@ def AnalyzeLinks(facebookID, facebookAccess, redditID, twitterID): #facebookID =
 
     print(sentiment)
 
+    weekDayCount = [0] * 7
+    hourCount = [0] * 24
+
+    timeJSON = easyQuery.getQuery("?select=hour,dayofweek&uuid=eq." + UUID)
+
+    for content in timeJSON:
+        weekDayCount[content["dayofweek"]-1] += 1
+        hourCount[content["hour"]-1] += 1
+
+
     returnData = {
         "UUID": UUID,
         "email": email,
@@ -114,9 +124,9 @@ def AnalyzeLinks(facebookID, facebookAccess, redditID, twitterID): #facebookID =
         "stringLength": stringLength,
         "wordCloudLink": wordCloudLink,
         "sentiment": sentiment,
-        "entities": entities
+        "entities": entities,
+        "weekDayCount": weekDayCount,
+        "hourCount": hourCount
     }
-
-    print(jsonify(returnData))
 
     return jsonify(returnData)

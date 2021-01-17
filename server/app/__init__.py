@@ -13,3 +13,7 @@ from app import stringToWordCloud
 from app import twitter
 from app import analyze
 from app import image
+
+@app.route("/")
+def hello():
+    return "<h1 style='color:blue'>Hello There!</h1>"
