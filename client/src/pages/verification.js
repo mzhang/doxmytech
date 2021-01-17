@@ -5,7 +5,6 @@ import axios from "axios";
 import {FacebookCard, TwitterCard, SuccessCard} from "../components/card.js" 
 import {navigate} from "@reach/router"
 import ClipLoader from "react-spinners/HashLoader";
-// import { Card, Image } from "react-bootstrap"
 
 
 //import NodeFetch from "node-fetch";
