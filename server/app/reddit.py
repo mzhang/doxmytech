@@ -14,7 +14,7 @@ def getRedditJSON(username):
 def getRedditCSV(username):
     UniqueID = str(uuid.uuid4())
     redditRes = requests.get('https://api.pushshift.io/reddit/search/comment/?author='+username+'&size=100')
-    out = "subreddit, created_time, content,uuid\n"
+    out = "subreddit,timestamp,content,uuid\n"
     for post in redditRes.json()["data"]:
         out += post["subreddit"] + ","
         out += str(post["created_utc"]) + ","
