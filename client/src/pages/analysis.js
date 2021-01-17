@@ -7,13 +7,35 @@ import ContactCard from "../components/contactCard.js";
 import TextStatsCard from "../components/textStatsCard.js";
 import LinegraphCard from "../components/linegraphCard.js"
 import WordCloudCard from "../components/wordCloudCard";
+import BreachCard from "../components/breachCard";
 import "./analysis.css"
 
 export default function Analysis() {
     const data = JSON.parse(
     `{
         "UUID": "2984491564600",
-        "breaches": [],
+        "breaches": [
+            {
+                "Name": "Collection1",
+                "Title": "Collection #1",
+                "Domain": " ",
+                "BreachDate": "2019-01-07",
+                "AddedDate": "2019-01-16T21:46:07Z",
+                "ModifiedDate": "2019-01-16T21:50:21Z",
+                "PwnCount": 772904991,
+                "Description": "In January 2019, a large collection of credential stuffing lists (combinations of email addresses and passwords used to hijack accounts on other services) was discovered being distributed on a popular hacking forum. The data contained almost 2.7 <em>billion</em> records including 773 million unique email addresses alongside passwords those addresses had used on other breached services.",
+                "LogoPath": "https://haveibeenpwned.com/Content/Images/PwnedLogos/List.png",
+                "DataClasses": [
+                    "Email addresses",
+                    "Passwords"
+                ],
+                "IsVerified": false,
+                "IsFabricated": false,
+                "IsSensitive": false,
+                "IsRetired": false,
+                "IsSpamList": false
+            }
+        ],
         "email": "facebook@sunnyzuo.com",
         "entities": {
             "Address": [],
@@ -117,9 +139,13 @@ export default function Analysis() {
                 </Row>
                 
                 <LinegraphCard data={data.sentiment}/>
+                <Row>
+                    <Col><WordCloudCard imageLink={data.wordCloudLink}/></Col>
+                </Row>
+                <Row>
+                    <BreachCard data={data.breaches}/>
+                </Row>
             </Container>
-
-
         </div>
     )
 }
