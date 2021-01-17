@@ -11,11 +11,11 @@ import BreachCard from "../components/breachCard";
 import "./analysis.css"
 
 export default function Analysis() {
-    const data = JSON.parse(
-    `{
-        "UUID": "2984491564600",
-        "breaches": [
-            {
+    const data = JSON.parse(`
+        {
+            "UUID": "9514085906429",
+            "breaches": [
+                {
                 "Name": "Collection1",
                 "Title": "Collection #1",
                 "Domain": " ",
@@ -35,98 +35,116 @@ export default function Analysis() {
                 "IsRetired": false,
                 "IsSpamList": false
             }
-        ],
-        "email": "facebook@sunnyzuo.com",
-        "entities": {
-            "Address": [],
-            "Location": [
-                "Europe",
-                "UK",
-                "Ontario",
-                "Canada",
-                "Canada",
-                "Alberta",
-                "Alberta",
-                "US"
             ],
-            "Phone Number": [
-                "203-492-3049",
-                "16-18-18-38",
-                "100664794",
-                "18-22-22-42",
-                "18-22-22-42",
-                "16-19-19-39",
-                "16-16-16-36",
-                "16384002"
-            ]
-        },
-        "fullName": "Sunny Zuo",
-        "readingLevel": 65.08179245283019,
-        "sentiment": [
-            [
-                0.21600000000000003,
-                0.7020000000000001,
-                0.08199999999999999
-            ],
-            [
-                0,
+            "email": null,
+            "entities": {
+                "Address": [],
+                "Location": [],
+                "Phone Number": []
+            },
+            "fullName": null,
+            "hourCount": [
+                10,
+                12,
+                18,
+                14,
+                5,
+                6,
+                6,
+                4,
                 1,
-                0
-            ],
-            [
-                0,
                 1,
-                0
+                1,
+                0,
+                2,
+                4,
+                5,
+                0,
+                4,
+                3,
+                3,
+                5,
+                3,
+                5,
+                3,
+                4
             ],
-            [
-                0.516842105263158,
-                0.25842105263157894,
-                0.22473684210526312
+            "readingLevel": 14.186050420168069,
+            "sentiment": [
+                [
+                0.11100000000000002,
+                0.48199999999999993,
+                0.4069999999999999
+                ],
+                [
+                0.13,
+                0.7859999999999999,
+                0.08399999999999999
+                ],
+                [
+                0.19624999999999992,
+                0.5281250000000001,
+                0.27562499999999995
+                ],
+                [
+                0.135,
+                0.62,
+                0.24499999999999997
+                ],
+                [
+                0.3495833333333333,
+                0.32749999999999996,
+                0.3229166666666666
+                ],
+                [
+                0.24499999999999997,
+                0.575,
+                0.18
+                ],
+                [
+                0.35333333333333333,
+                0.30333333333333334,
+                0.3433333333333333
+                ],
+                [
+                0.248,
+                0.587,
+                0.165
+                ],
+                [
+                0.31133333333333335,
+                0.39999999999999997,
+                0.2886666666666667
+                ],
+                [
+                0.38375,
+                0.36750000000000005,
+                0.24874999999999997
+                ],
+                [
+                0.39999999999999997,
+                0.39333333333333337,
+                0.20666666666666667
+                ],
+                [
+                0.504,
+                0.386,
+                0.11000000000000001
+                ]
             ],
-            [
-                0.49105263157894735,
-                0.23947368421052637,
-                0.26947368421052625
+            "stringLength": 46.09243697478992,
+            "weekDayCount": [
+                14,
+                11,
+                16,
+                18,
+                13,
+                29,
+                18
             ],
-            [
-                0.3977777777777778,
-                0.23666666666666666,
-                0.3655555555555556
-            ],
-            [
-                0.306875,
-                0.3868749999999999,
-                0.30625
-            ],
-            [
-                0.28928571428571426,
-                0.3757142857142857,
-                0.3349999999999999
-            ],
-            [
-                0.22200000000000003,
-                0.554,
-                0.22400000000000003
-            ],
-            [
-                0.34,
-                0.355,
-                0.305
-            ],
-            [
-                0.6166666666666666,
-                0.14,
-                0.24333333333333337
-            ],
-            [
-                0.11,
-                0.7,
-                0.19
-            ]
-        ],
-        "stringLength": 176.5943396226415,
-        "wordCloudLink": "2984491564600.jpg"
-    }`)
+            "wordCloudLink": "9514085906429.jpg"
+        }
+    `)
     return (
         <div className="text-center">
             <h1>Hello, {data.fullName}</h1>
@@ -136,6 +154,7 @@ export default function Analysis() {
                 <Row>
                     <Col><AnalysisCard addresses={data.entities["Address"]} locations={data.entities["Location"]}/></Col>
                     <Col><ContactCard email={data.email} phoneNumbers={data.entities["Phone Number"]}/></Col>
+                    <Col><TextStatsCard rawReadingLevel={data.readingLevel} averageChars={data.stringLength}/></Col>
                 </Row>
                 
                 <LinegraphCard data={data.sentiment}/>
