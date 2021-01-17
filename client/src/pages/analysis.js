@@ -133,8 +133,7 @@ export default function Analysis() {
                 0.11000000000000001
                 ]
             ],
-            "stringLength": 46.09243697478992,
-            "weekDayCount": [
+            "weekDayCount": [[
                 14,
                 11,
                 16,
