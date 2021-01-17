@@ -75,6 +75,8 @@ def AnalyzeLinks(facebookID, facebookAccess, redditID, twitterID): #facebookID =
         monthContentList[month-1].append(content["content"])
 
     for content in contentJSON:
+        tempString = content["content"]
+        tempString = tempString.replace("lt", "").replace("gt", "g")
         contentList.append(content["content"])
 
     readingLevel = None
@@ -97,9 +99,11 @@ def AnalyzeLinks(facebookID, facebookAccess, redditID, twitterID): #facebookID =
         print("finished wordcloud")
 
         for month in monthContentList:
+            print(month)
             sentiment.append(sentiment_analysis.sentiment_analysis(month))
         entities = entity_recognition.entity_recognition(contentList)
 
+    print(sentiment)
 
     returnData = {
         "UUID": UUID,
