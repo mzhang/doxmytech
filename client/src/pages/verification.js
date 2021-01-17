@@ -24,7 +24,7 @@ export default function Verification(props) {
 
         const res = await axios({
             method: 'post',
-            url: 'http://localhost:5000/facebookCheck',
+            url: `${process.env.REACT_APP_URL}/facebookCheck`,
             data: {
                 "profileLink": props.location.state.facebook,
                 "accessCode": response["accessToken"],
@@ -39,7 +39,7 @@ export default function Verification(props) {
     const responseTwitter = async () => {
         const res = await axios({
             method: 'get',
-            url: 'http://localhost:5000/twitterBio/' + props.location.state.twitter
+            url: `${process.env.REACT_APP_URL}/twitterBio/` + props.location.state.twitter
         })
 
         let bio = res.data;
@@ -58,13 +58,13 @@ export default function Verification(props) {
         if (props.location.state.twitter === "") props.location.state.twitter = "null"
         if (fbData.id === "") fbData.id = "null"
         if (fbData.accessToken === "") fbData.accessToken = "null"
-        console.log(`http://localhost:5000/analyzeLinks/${fbData.id}&${fbData.accessToken}&${props.location.state.reddit}&${props.location.state.twitter}`)
+        console.log(`${process.env.REACT_APP_URL}/analyzeLinks/${fbData.id}&${fbData.accessToken}&${props.location.state.reddit}&${props.location.state.twitter}`)
 
         setLoading(true);
 
         const res = await axios({
             method: 'get',
-            url: `http://localhost:5000/analyzeLinks/${fbData.id}&${fbData.accessToken}&${props.location.state.reddit}&${props.location.state.twitter}`
+            url: `${process.env.REACT_APP_URL}/analyzeLinks/${fbData.id}&${fbData.accessToken}&${props.location.state.reddit}&${props.location.state.twitter}`
         })
 
         console.log(res.data);
