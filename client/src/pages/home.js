@@ -11,6 +11,7 @@ import BootstrapButton from "react-bootstrap/Button"
 import { AiFillFacebook, AiOutlineLink } from "react-icons/ai";
 import { ImTwitter } from "react-icons/im";
 import { FcReddit } from "react-icons/fc";
+import { Card } from "react-bootstrap"
 
 export default function Home() {
     const [fbURL, setFbURL] = useState('');
@@ -18,8 +19,11 @@ export default function Home() {
     const [redditAcc, setRedditAcc] = useState('');
     return (
         <div>
+            <div style={{position: 'absolute', left: '50%', top: '50%',
+        transform: 'translate(-50%, -50%)'}}>
+            <Card>
             <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-                <h1>DoxMy.tech</h1> <br />
+                <h1>DoxMy.tech</h1>
                 <h2>Insert short tagline about project</h2>
 
                 <div class="platformInput">
@@ -75,11 +79,12 @@ export default function Home() {
                     </Form>
                 </div>
 
-                <BootstrapButton as={Link} to="/verification" state={{ facebook: fbURL, twitter: twitterAcc, reddit: redditAcc }} style={{marginTop: "50px"}}>
+                <BootstrapButton as={Link} to="/verification" state={{ facebook: fbURL, twitter: twitterAcc, reddit: redditAcc }} style={{margin: "3em 0em 1em 0em"}}>
                     Explore!
                 </BootstrapButton>
             </div>
-
+            </Card>
+            </div>
             <div style={{ display: 'none' }}><FacebookLogin
                 appId="440751897337373"
                 fields="name,email,picture"
