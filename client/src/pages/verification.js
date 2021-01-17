@@ -11,6 +11,7 @@ import {navigate} from "@reach/router"
 export default function Verification(props) {
     const [fbData, setFBData] = useState('');
     const [twitterData, setTwitterData] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const responseFacebook = async (response) => {
         if (response.accessToken) {
@@ -56,6 +57,9 @@ export default function Verification(props) {
         if (fbData.id === "") fbData.id = "null"
         if (fbData.accessToken === "") fbData.accessToken = "null"
         console.log(`http://localhost:5000/analyzeLinks/${fbData.id}&${fbData.accessToken}&${props.location.state.reddit}&${props.location.state.twitter}`)
+
+        setLoading(true);
+
         const res = await axios({
             method: 'get',
             url: `http://localhost:5000/analyzeLinks/${fbData.id}&${fbData.accessToken}&${props.location.state.reddit}&${props.location.state.twitter}`
@@ -63,9 +67,23 @@ export default function Verification(props) {
 
         console.log(res.data);
 
+        
         navigate("/analysis", {state: res.data})
     }
 
+    const pageDisplay = () => {
+        return ( <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+        <h1>Hold on...</h1>
+        <h2>We need your permission before continuing.</h2>
+        {summonCards()}
+
+        </div>)
+    }
+    const loadingDisplay = () => {
+        return ( <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+        <h1>loading LOADING...</h1>
+        </div>)
+    }
 
     // You can access the user's twitter/facebook/reddit using props.location.state
     // For example, props.location.state.reddit gives the user's supposed reddit username
@@ -91,12 +109,7 @@ export default function Verification(props) {
 
     return (
         <div>
-            <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-                <h1>Hold on...</h1>
-                <h2>We need your permission before continuing.</h2>
-                {summonCards()}
-
-            </div>
+           {loading ? loadingDisplay() : pageDisplay()}
         </div>
     )
 }
