@@ -18,7 +18,7 @@ def getRedditCSV(username):
     for post in redditRes.json()["data"]:
         out += post["subreddit"] + ","
         out += str(post["created_utc"]) + ","
-        out += post["body"].replace(",", " ").replace("\n", " ") + ","
+        out += post["body"].replace(",", " ").replace("\n", " ").replace("\r", "") + ","
         out +=  UniqueID + "\n"
         
     return out
