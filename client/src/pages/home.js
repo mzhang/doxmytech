@@ -11,6 +11,7 @@ import BootstrapButton from "react-bootstrap/Button"
 import { AiFillFacebook } from "react-icons/ai";
 import { ImTwitter } from "react-icons/im";
 import { FcReddit } from "react-icons/fc";
+import { AiOutlineLink } from "react-icons/ai";
 
 export default function Home() {
     const [fbURL, setFbURL] = useState('');
@@ -26,6 +27,11 @@ export default function Home() {
                     <AiFillFacebook style={{fontSize: "2.7em", color: "#3b5998", marginRight: "5px"}} />
                     <Form inline>
                         <InputGroup>
+                        <InputGroup.Prepend>
+                            <InputGroup.Text id="basic-addon1">
+                                <AiOutlineLink style={{fontSize: "0.9em", color: "#000000"}}/>
+                            </InputGroup.Text>
+                        </InputGroup.Prepend>
                             <FormControl
                                 placeholder="https://facebook.com/"
                                 aria-label="Username"

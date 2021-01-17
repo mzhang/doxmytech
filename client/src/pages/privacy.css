@@ -8,7 +8,7 @@ h1 {
 
 h2 {
     font-family: 'Raleway', sans-serif;
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 300;
     text-align: center;
     margin-left:100px;
@@ -22,4 +22,10 @@ p {
     text-align: center;
     margin-left:100px;
     margin-right:100px;
+}
+
+.thin {
+    width: 80%;
+    text-align: center;
+    margin: 0 auto;
 }

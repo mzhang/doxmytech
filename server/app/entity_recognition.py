@@ -4,6 +4,8 @@ from dotenv import load_dotenv
 import os
 load_dotenv()
 
+key = os.getenv('AZURE_KEY')
+endpoint = os.getenv('AZURE_ENDPOINT')
 
 def authenticate_client():
     ta_credential = AzureKeyCredential(key)
@@ -38,10 +40,3 @@ def entity_recognition(text):
             else:
                 entities["Phone Number"].append(entity.text)
     return entities
-
-key = os.getenv('AZURE_KEY')
-endpoint = os.getenv('AZURE_ENDPOINT')
-
-text = ["788 Stargazer Drive", "Mississauga is where i live", "my phone number us 647-939-2690 hmu"]
-print(entity_recognition(text))
-
