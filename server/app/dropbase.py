@@ -17,6 +17,8 @@ def getUploadURL(token):
         print("Error getting upload URL")
 
 def uploadFile(media, csvData):
+    if (not os.path.exists("./app/csvData")):
+        os.mkdir("./app/csvData")
     filepath = "./app/csvData/" + str(math.floor(random.random() * 100000000)) + ".csv"
     f = open(filepath, "w", encoding='utf-8')
     f.write(csvData)
