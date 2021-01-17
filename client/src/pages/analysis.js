@@ -9,6 +9,7 @@ import LinegraphCard from "../components/linegraphCard.js"
 import WordCloudCard from "../components/wordCloudCard";
 import BreachCard from "../components/breachCard";
 import HourFrequencyCard from "../components/hourFrequencyCard.js"
+import WeekDayFrequencyCard from "../components/weekDayFrequencyCard.js"
 import "./analysis.css"
 
 export default function Analysis() {
@@ -133,7 +134,7 @@ export default function Analysis() {
                 0.11000000000000001
                 ]
             ],
-            "weekDayCount": [[
+            "weekDayCount": [
                 14,
                 11,
                 16,
@@ -141,13 +142,7 @@ export default function Analysis() {
                 13,
                 29,
                 18
-            ],
-            [
-                0.11,
-                0.7,
-                0.19
-            ]
-        ],
+              ],
         "stringLength": 176.5943396226415,
         "wordCloudLink": "2984491564600.jpg"
     }`)
@@ -165,6 +160,7 @@ export default function Analysis() {
                 </Row>
 
                 <LinegraphCard data={data.sentiment}/>
+                <WeekDayFrequencyCard data={data.weekDayCount}/>
                 <HourFrequencyCard data={data.hourCount}/>
 
                 <Row>
