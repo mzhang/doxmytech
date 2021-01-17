@@ -8,19 +8,24 @@ from app import easyQuery
 from app import stringToWordCloud
 from app import twitter
 from app import reddit
+from app import textAnalysis
+from app import hibp
+from app import sentiment_analysis
 
 @app.route("/analyzeLinks/<facebookID>&<facebookAccess>&<redditID>&<twitterID>")
 def AnalyzeLinks(facebookID, facebookAccess, redditID, twitterID): #facebookID = id, facebookAccess = access, reddit = username, twitter = username
     UUID = str(math.floor(random.random() * 10000000000000))
-    print(UUID)
+    print(f"UUID: {UUID}")
 
     email = None
+    breaches = []
 
     if facebookID != "none":
         facebookJSON = facebook.facebookData(facebookID, facebookAccess)
 
         fullName = facebookJSON["name"]
         email = facebookJSON["email"] 
+        breaches = hibp.getBreachInfo(email)
     
     
     if twitter != "none":
@@ -32,6 +37,7 @@ def AnalyzeLinks(facebookID, facebookAccess, redditID, twitterID): #facebookID =
     
     finished = False
 
+    #Wait until database is done updating
     while not finished:
         twitterR = requests.get("https://api2.dropbase.io/v1/pipeline/run_pipeline", data={"job_id": twitterJob})
         redditR = requests.get("https://api2.dropbase.io/v1/pipeline/run_pipeline", data={"job_id": redditJob})
@@ -42,15 +48,27 @@ def AnalyzeLinks(facebookID, facebookAccess, redditID, twitterID): #facebookID =
             finished = True
         else:
             time.sleep(0.5)
-    
-    time.sleep(2)
 
+    #Get list of strings
     contentJSON = easyQuery.getQuery("?select=content&uuid=eq." + UUID)
     contentList = []
     for content in contentJSON:
         contentList.append(content["content"])
-    
-    #Word Cloud Img Saved Locally
-    stringToWordCloud.textListToWordCloud(contentList, UUID)
+
+    readingLevel = None
+    stringLength = None
+    wordCloudLink = None
+    sentiment = []
+
+    if contentList:
+        #Text Stuff
+        readingLevel = textAnalysis.averageReadingLevel(contentList)
+        stringLength = textAnalysis.averageStringLength(contentList)
+
+        #Word Cloud Img Saved Locally
+        stringToWordCloud.textListToWordCloud(contentList, UUID) #UUID = fileName
+        wordCloudLink = "/" + UUID + ".jpg"
+
+        sentiment_analysis.sentiment_analysis(contentList)
 
     return jsonify(contentJSON)

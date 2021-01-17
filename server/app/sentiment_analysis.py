@@ -4,6 +4,8 @@ from dotenv import load_dotenv
 import os
 load_dotenv()
 
+key = os.getenv('AZURE_KEY')
+endpoint = os.getenv('AZURE_ENDPOINT')
 
 def authenticate_client():
     ta_credential = AzureKeyCredential(key)
@@ -25,7 +27,3 @@ def sentiment_analysis(text):
     for i in text:
         sentiment.append(find_sentiment(client,[i]))
     return sentiment
-key = os.getenv('AZURE_KEY')
-endpoint = os.getenv('AZURE_ENDPOINT')
-text = ["Today at SpaceX is about practicing Starship engine starts. Ship is held down by massive pins while engines are fired. Two starts completed, about to try a third.", "I am sad"]
-print(sentiment_analysis(text))

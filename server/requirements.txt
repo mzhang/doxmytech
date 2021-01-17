@@ -23,3 +23,5 @@ requests == 2.24.0
 
 # D:\Projects\doxmytech\server\app\stringToWordCloud.py: 6
 wordcloud == 1.8.1
+
+azure-ai-textanalytics == 5.0.0

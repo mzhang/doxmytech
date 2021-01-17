@@ -3,7 +3,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-
 def getBreachInfo(email):
     hibpToken = os.getenv('HIBP_KEY')
     breachRes = requests.get(
@@ -17,3 +16,4 @@ def getBreachInfo(email):
             return breaches
     else:
         print("No data")
+        return []
