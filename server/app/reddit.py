@@ -6,14 +6,14 @@ import requests, json, csv, io, uuid
 from app import dropbase
 
 def getRedditJSON(username):
-    redditRes = requests.get('https://api.pushshift.io/reddit/search/comment/?author='+username+'&size=100')
+    redditRes = requests.get('https://api.pushshift.io/reddit/search/comment/?author='+username+'&size=30')
     out = {}
     for post in redditRes.json()["data"]:
         out[post["permalink"]]=post["body"]
     return jsonify(out)
     
 def getRedditCSV(username, UniqueID):
-    redditRes = requests.get('https://api.pushshift.io/reddit/search/comment/?author='+username+'&size=100')
+    redditRes = requests.get('https://api.pushshift.io/reddit/search/comment/?author='+username+'&size=30')
     out = "subreddit,timestamp,content,uuid\n"
     for post in redditRes.json()["data"]:
         out += post["subreddit"] + ","
@@ -24,7 +24,7 @@ def getRedditCSV(username, UniqueID):
     return dropbase.uploadFile("reddit", out)
 
 def getRedditText(username):
-    redditRes = requests.get('https://api.pushshift.io/reddit/search/comment/?author='+username+'&size=100')
+    redditRes = requests.get('https://api.pushshift.io/reddit/search/comment/?author='+username+'&size=30')
     out = ""
     for post in redditRes.json()["data"]:
         out += post["body"] + " "
