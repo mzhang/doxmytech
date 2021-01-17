@@ -2,7 +2,7 @@ from app import app
 
 from flask import Flask
 from flask import make_response,jsonify,send_file,request
-import requests, json, csv, io
+import requests, json, csv, io, uuid
 
 def getRedditJSON(username):
     redditRes = requests.get('https://api.pushshift.io/reddit/search/comment/?author='+username+'&size=100')
@@ -12,12 +12,14 @@ def getRedditJSON(username):
     return jsonify(out)
     
 def getRedditCSV(username):
+    UniqueID = str(uuid.uuid4())
     redditRes = requests.get('https://api.pushshift.io/reddit/search/comment/?author='+username+'&size=100')
-    out = "subreddit, created_time, content\n"
+    out = "subreddit, created_time, content,uuid\n"
     for post in redditRes.json()["data"]:
         out += post["subreddit"] + ","
         out += str(post["created_utc"]) + ","
-        out += post["body"].replace(",", " ").replace("\n", " ") + "\n"
+        out += post["body"].replace(",", " ").replace("\n", " ") + ","
+        out +=  UniqueID + "\n"
         
     return out
 

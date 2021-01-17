@@ -22,9 +22,13 @@ def uploadFile(media, csvFilePath):
 
     url = uploadInfo["upload_url"]
     jobId = uploadInfo["job_id"]
-    print(jobId)
 
     uploadRes = requests.put(url, data=open(csvFilePath, 'rb'))
-    print(uploadRes)
+    if (uploadRes.status_code == 200):
+        return jobId
+
+def GetTableData(token, table):
+    r = requests.get(DROPBASE_REST_API + "/" + table, headers={"Authorization": "Bearer " + DROPBASE_REST_SECRET})
+    return json.loads(r.text)
 
 # uploadFile('twitter', './csvData/tweets.csv')

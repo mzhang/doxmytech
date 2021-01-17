@@ -3,9 +3,12 @@ from app import app
 from flask import make_response
 from flask import jsonify
 import requests
-import json, csv
+import json, csv, uuid, os
+from dotenv import load_dotenv
 
-headers = {"Authorization": "Bearer AAAAAAAAAAAAAAAAAAAAAOFOLwEAAAAAVRkvjw52a5E9k3O1tnbxwRxvuyQ%3DbI8F9XiX7uILHh3iYx6mA5h6lAPkGmuoetPahhPjzEmpjMVMNY "}
+load_dotenv()
+
+headers = {"Authorization": "Bearer " + os.getenv("TWITTER_BEARER_TOKEN")}
 
 def getTwitterID(username):
     IdRes = requests.get('https://api.twitter.com/2/users/by/username/'+username,headers = headers).json()
@@ -20,6 +23,8 @@ def getBio(username):
 
 @app.route("/twitterTimeline/<username>")
 def getTimeline(username):
+    UniqueID = str(uuid.uuid4())
+
     userid = getTwitterID(username)
     TimelineRes = requests.get('https://api.twitter.com/2/users/'+userid+'/tweets?max_results=100&tweet.fields=created_at', headers = headers).json()
     data = list()
@@ -38,9 +43,9 @@ def getTimeline(username):
             i['text'] = i['text'].replace(",", " ")
             i['text'] = i['text'].replace("\n", "")
             data.append({'text':i['text'], 'created_at':i['created_at']})
-    csvtext = "text,created_at \n"
+    csvtext = "text,created_at,uuid \n"
     for i in data:
-        csvtext += i['text'] + ", " + i['created_at'] + "\n"
+        csvtext += i['text'] + ", " + i['created_at'] + "," + UniqueID + "\n"
     response = make_response(csvtext)
     response.headers['Content-Disposition'] = 'attachment; filename='+username+'.csv'
     response.mimetype='text/csv'
