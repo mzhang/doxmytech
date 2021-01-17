@@ -4,6 +4,18 @@ import {BiCurrentLocation} from "react-icons/bi"
 import TextLoop from "react-text-loop"
 
 export default function card(props) {
+    if (!props.locations?.length && !props.addresses?.length) {
+        return (
+            <Card className="text-center top-margins">
+                <Card.Header>
+                    <BiCurrentLocation style={{ fontSize: "2.7em", color: "#3b5998" }} />
+                </Card.Header>
+                <Card.Body>
+                    We found no location info :)
+                </Card.Body>
+            </Card>
+        )
+    } 
     return (<div>
         <Card className="text-center top-margins">
             <Card.Header>
