@@ -94,7 +94,7 @@ def AnalyzeLinks(facebookID, facebookAccess, redditID, twitterID): #facebookID =
 
         #Word Cloud Img Saved Locally
         stringToWordCloud.textListToWordCloud(contentList, UUID) #UUID = fileName
-        wordCloudLink = "/" + UUID + ".jpg"
+        wordCloudLink =  UUID + ".jpg"
 
         print("finished wordcloud")
 

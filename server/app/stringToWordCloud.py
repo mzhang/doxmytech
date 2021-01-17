@@ -1,7 +1,7 @@
 from app import app
 from flask import Flask
 from flask import make_response,jsonify,send_file,request
-import requests, json 
+import requests, json, os
 
 from wordcloud import WordCloud
 
@@ -28,6 +28,9 @@ def textListToWordCloud(stringList, fileName):
         content += s
     cloud = wc.generate(content)
 
-    return cloud.to_file("./app/"+fileName+".jpg")
+    if (not os.path.exists("./app/wordClouds")):
+        os.mkdir("./app/wordClouds")
+
+    return cloud.to_file("./app/wordClouds/"+fileName+".jpg")
 
 
