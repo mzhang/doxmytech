@@ -20,10 +20,25 @@ def find_sentiment(client, text):
     sent = [response.confidence_scores.positive, response.confidence_scores.neutral, response.confidence_scores.negative]
     return sent
 
+def aggregate_sentiment(sentiments):
+    aggregate = []
+    positive = 0
+    neutral = 0
+    negative = 0
+    total = len(sentiments)
+    for i in sentiments:
+        positive += i[0]
+        neutral += i[1]
+        negative += i[2]
+    aggregate.append(positive/total)
+    aggregate.append(neutral/total)
+    aggregate.append(negative/total)
+    return aggregate
 
 def sentiment_analysis(text):
     client = authenticate_client()
     sentiment = []
     for i in text:
         sentiment.append(find_sentiment(client,[i]))
-    return sentiment
+    aggregate = aggregate_sentiment(sentiment)
+    return aggregate
