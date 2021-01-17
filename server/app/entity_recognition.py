@@ -29,10 +29,16 @@ def find_entities(client,text):
 
 def entity_recognition(text):
     client = authenticate_client()
-    entities = []
+    entities = {"Address":[], "Location":[], "Phone Number":[]}
     for i in text:
-        entities.append(find_entities(client,[i]))
-
+        find = find_entities(client,[i])
+        for entity in find:
+            if entity.category == "Address":
+                entities["Address"].append(entity.text)
+            elif entity.category == "Location":
+                entities["Location"].append(entity.text)
+            else:
+                entities["Phone Number"].append(entity.text)
     return entities
 
-
+    return entities
