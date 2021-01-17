@@ -5,6 +5,7 @@ from flask import jsonify
 import requests
 import json, csv, uuid, os
 from dotenv import load_dotenv
+from app import dropbase
 
 load_dotenv()
 
@@ -43,9 +44,10 @@ def getTimeline(username):
             i['text'] = i['text'].replace(",", " ")
             i['text'] = i['text'].replace("\n", "")
             data.append({'text':i['text'], 'created_at':i['created_at']})
-    csvtext = "text,created_at,uuid \n"
+    csvtext = "text,created_at,uuid\n"
     for i in data:
-        csvtext += i['text'] + ", " + i['created_at'] + "," + UniqueID + "\n"
+        csvtext += i['text'] + "," + i['created_at'] + "," + UniqueID + "\n"
+    dropbase.uploadFile("twitter", csvtext)
     response = make_response(csvtext)
     response.headers['Content-Disposition'] = 'attachment; filename='+username+'.csv'
     response.mimetype='text/csv'
