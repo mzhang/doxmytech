@@ -6,8 +6,10 @@ import os
 
 @app.route('/image/<fileName>', methods=['GET'])
 def getImage(fileName):
-    print(fileName)
     if (os.path.exists("./app/wordClouds/" + fileName)):
         filePath = Path(__file__).resolve().parent / "wordClouds"
-        print(filePath)
         return send_from_directory(filePath, fileName)
+    else:
+        filePath = Path(__file__).resolve().parent / "assets"
+        return send_from_directory(filePath, "404.png")
+        return 
