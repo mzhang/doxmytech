@@ -12,3 +12,4 @@ from app import twitter
 from app import stringToWordCloud
 from app import twitter
 from app import analyze
+from app import image

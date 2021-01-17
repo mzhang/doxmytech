@@ -8,69 +8,56 @@ class SplineChart extends Component {
 			animationEnabled: true,
 			title:{
 				text: ""
-			},
-			axisX: {
+            },
+            legend: {
+				verticalAlign: "bottom",
+				reversed: true
+			},axisX: {
+                interval: "1",
+                intervalType: "month",
 				valueFormatString: "MMM"
 			},
 			axisY: {
-				title: "",
-				prefix: "",
-				includeZero: false
+				title: "Percentage of total posts",
+                prefix: "",
+                minimim: "0",
+                maximum: "110",
+                valueFormatString:"0'%'",
+				includeZero: true
 			},
 			data: [{
-				yValueFormatString: "$#,###",
+                lineColor: "green",
+                markerSize: "0.5",
+                markerColor: "green",
+				yValueFormatString: "##'%'",
 				xValueFormatString: "MMMM",
 				type: "spline",
-				dataPoints: [
-					{ x: new Date(2017, 0), y: 25.060 },
-					{ x: new Date(2017, 1), y: 27.980 },
-					{ x: new Date(2017, 2), y: 42.800 },
-					{ x: new Date(2017, 3), y: 32.400 },
-					{ x: new Date(2017, 4), y: 35.260 },
-					{ x: new Date(2017, 5), y: 33.900 },
-					{ x: new Date(2017, 6), y: 40.000 },
-					{ x: new Date(2017, 7), y: 52.500 },
-					{ x: new Date(2017, 8), y: 32.300 },
-					{ x: new Date(2017, 9), y: 42.000 },
-					{ x: new Date(2017, 10), y: 3.7160 },
-					{ x: new Date(2017, 11), y: 3.8400 }
-				]
+                showInLegend: true,  
+				horizontalAlign: "right",
+                legendText: "Happy Posts",
+				dataPoints: this.props.happy
 			},{
-				yValueFormatString: "$#,###",
+                lineColor: "grey",
+                markerSize: "0.5",
+                markerColor: "grey",
+				yValueFormatString: "##'%'",
 				xValueFormatString: "MMMM",
 				type: "spline",
-				dataPoints: [
-					{ x: new Date(2017, 0), y: 25.060 },
-					{ x: new Date(2017, 1), y: 27.980 },
-					{ x: new Date(2017, 2), y: 42.800 },
-					{ x: new Date(2017, 3), y: 32.400 },
-					{ x: new Date(2017, 4), y: 35.260 },
-					{ x: new Date(2017, 5), y: 33.900 },
-					{ x: new Date(2017, 6), y: 40.000 },
-					{ x: new Date(2017, 7), y: 52.500 },
-					{ x: new Date(2017, 8), y: 32.300 },
-					{ x: new Date(2017, 9), y: 42.000 },
-					{ x: new Date(2017, 10), y: 3.7160 },
-					{ x: new Date(2017, 11), y: 3.8400 }
-				]
+                showInLegend: true, 
+				horizontalAlign: "right",
+                legendText: "Neutral Posts",
+				dataPoints: this.props.neutral
 			},{
-				yValueFormatString: "$#,###",
+                lineColor: "red",
+                markerSize: "0.5",
+                markerColor: "red",
+				yValueFormatString: "##'%'",
 				xValueFormatString: "MMMM",
 				type: "spline",
-				dataPoints: [
-					{ x: new Date(2017, 0), y: 25.060 },
-					{ x: new Date(2017, 1), y: 27.980 },
-					{ x: new Date(2017, 2), y: 42.800 },
-					{ x: new Date(2017, 3), y: 32.400 },
-					{ x: new Date(2017, 4), y: 35.260 },
-					{ x: new Date(2017, 5), y: 33.900 },
-					{ x: new Date(2017, 6), y: 40.000 },
-					{ x: new Date(2017, 7), y: 52.500 },
-					{ x: new Date(2017, 8), y: 32.300 },
-					{ x: new Date(2017, 9), y: 42.000 },
-					{ x: new Date(2017, 10), y: 3.7160 },
-					{ x: new Date(2017, 11), y: 3.8400 }
-				]
+                showInLegend: true, 
+				horizontalAlign: "right",
+                legendText: "Sad Posts",
+				dataPoints: this.props.sad
 			}]
 		}
 		

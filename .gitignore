@@ -6,4 +6,7 @@ server/__pycache__/
 server/app/__pycache__/
 ./server/app/cloud.jpg
 server/app/csvData/*.csv
-server/app/*.jpg
+server/app/wordClouds/*.jpg
+*.png
+*.jpg
+*.jpeg
