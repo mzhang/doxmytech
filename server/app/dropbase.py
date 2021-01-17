@@ -22,9 +22,9 @@ def uploadFile(media, csvFilePath):
 
     url = uploadInfo["upload_url"]
     jobId = uploadInfo["job_id"]
-    print(jobId)
 
     uploadRes = requests.put(url, data=open(csvFilePath, 'rb'))
-    print(uploadRes)
+    if (uploadRes.status_code == 200):
+        return jobId
 
 # uploadFile('twitter', './csvData/tweets.csv')
