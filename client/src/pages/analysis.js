@@ -107,22 +107,13 @@ export default function Analysis() {
     }`)
     return (
         <div className="text-center">
-            <h1>Hello, {data.fullName}.</h1>
+            <h1>Hello, {data.fullName}</h1>
             <h3>Here's what we got on you.</h3>
             <br/>
             <Container style={{backgroundColor: '#f1f1f1'}}>
                 <Row>
-                    <Col><AnalysisPersonal name={data.fullName} phoneNumbers={data.entities["Phone Number"]} address={"interwebs"} location={"danada"} email={"noN00bs@yahoo.ca"}/></Col>
-                    <Col>2 of 2</Col>
-                </Row>
-                <Row>
-                    <Col><AnalysisCard address={"interwebs"} location={"danada"}/></Col>
-                    <Col><ContactCard email={"noN00bs@yahoo.ca"} phoneNumbers={data.entities["Phone Number"]}/></Col>
-                    <Col>3 of 3</Col>
-                </Row><Row>
-                    <Col><AnalysisCard address={"interwebs"} location={"danada"}/></Col>
-                    <Col><TextStatsCard averageChars={"123"} readingLevel={"7051231234"}/></Col>
-                    <Col>3 of 3</Col>
+                    <Col><AnalysisCard addresses={data.entities["Address"]} locations={data.entities["Location"]}/></Col>
+                    <Col><ContactCard email={data.email} phoneNumbers={data.entities["Phone Number"]}/></Col>
                 </Row>
                 
                 <LinegraphCard data={data.sentiment}/>
