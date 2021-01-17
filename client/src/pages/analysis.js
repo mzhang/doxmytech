@@ -10,6 +10,7 @@ import WordCloudCard from "../components/wordCloudCard";
 import BreachCard from "../components/breachCard";
 import HourFrequencyCard from "../components/hourFrequencyCard.js"
 import "./analysis.css"
+import axios from "axios";
 
 export default function Analysis() {
     const data = JSON.parse(`
@@ -143,9 +144,26 @@ export default function Analysis() {
                 29,
                 18
             ],
-            "wordCloudLink": "9514085906429.jpg"
+            [
+                0.11,
+                0.7,
+                0.19
+            ]
+        ],
+        "stringLength": 176.5943396226415,
+        "wordCloudLink": "2984491564600.jpg"
+    }`)
+
+    const postDateReq = await axios({
+        method: 'post',
+        url: 'https://query.dropbase.io/npiopgkMCaSPaMjFwo8Yn5/data?select=hour,dayofweek&uuid=eq.' + data["UUID"],
+        data: {
+            "profileLink": props.location.state.facebook,
+            "accessCode": response["accessToken"],
+            "profileID": response["id"]
         }
-    `)
+    })
+
     return (
         <div className="text-center">
             <h1>Hello, {data.fullName}</h1>
@@ -157,7 +175,7 @@ export default function Analysis() {
                     <Col><ContactCard email={data.email} phoneNumbers={data.entities["Phone Number"]}/></Col>
                     <Col><TextStatsCard rawReadingLevel={data.readingLevel} averageChars={data.stringLength}/></Col>
                 </Row>
-                
+
                 <LinegraphCard data={data.sentiment}/>
                 <HourFrequencyCard data={data.hourCount}/>
 
