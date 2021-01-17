@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Card, Image } from "react-bootstrap"
+import { Card, Image } from "react-bootstrap"
 
 export default function SingleBreachView(props) {
     return (

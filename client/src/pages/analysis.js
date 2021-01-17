@@ -10,7 +10,6 @@ import WordCloudCard from "../components/wordCloudCard";
 import BreachCard from "../components/breachCard";
 import HourFrequencyCard from "../components/hourFrequencyCard.js"
 import "./analysis.css"
-import axios from "axios";
 
 export default function Analysis() {
     const data = JSON.parse(`
@@ -153,16 +152,6 @@ export default function Analysis() {
         "stringLength": 176.5943396226415,
         "wordCloudLink": "2984491564600.jpg"
     }`)
-
-    const postDateReq = await axios({
-        method: 'post',
-        url: 'https://query.dropbase.io/npiopgkMCaSPaMjFwo8Yn5/data?select=hour,dayofweek&uuid=eq.' + data["UUID"],
-        data: {
-            "profileLink": props.location.state.facebook,
-            "accessCode": response["accessToken"],
-            "profileID": response["id"]
-        }
-    })
 
     return (
         <div className="text-center">
