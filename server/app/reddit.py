@@ -12,8 +12,7 @@ def getRedditJSON(username):
         out[post["permalink"]]=post["body"]
     return jsonify(out)
     
-def getRedditCSV(username):
-    UniqueID = str(uuid.uuid4())
+def getRedditCSV(username, UniqueID):
     redditRes = requests.get('https://api.pushshift.io/reddit/search/comment/?author='+username+'&size=100')
     out = "subreddit,timestamp,content,uuid\n"
     for post in redditRes.json()["data"]:
@@ -22,8 +21,7 @@ def getRedditCSV(username):
         out += post["body"].replace(",", " ").replace("\n", " ").replace("\r", "") + ","
         out +=  UniqueID + "\n"
     
-    dropbase.uploadFile("reddit", out)
-    return out
+    return dropbase.uploadFile("reddit", out)
 
 def getRedditText(username):
     redditRes = requests.get('https://api.pushshift.io/reddit/search/comment/?author='+username+'&size=100')
