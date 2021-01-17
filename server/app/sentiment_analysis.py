@@ -27,5 +27,5 @@ def sentiment_analysis(text):
     return sentiment
 key = os.getenv('AZURE_KEY')
 endpoint = os.getenv('AZURE_ENDPOINT')
-text = ["I am happy", "I am sad"]
+text = ["Today at SpaceX is about practicing Starship engine starts. Ship is held down by massive pins while engines are fired. Two starts completed, about to try a third.", "I am sad"]
 print(sentiment_analysis(text))
