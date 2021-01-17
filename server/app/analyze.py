@@ -64,7 +64,8 @@ def AnalyzeLinks(facebookID, facebookAccess, redditID, twitterID): #facebookID =
     contentJSON = easyQuery.getQuery("?select=content&uuid=eq." + UUID)
     contentList = []
     for content in contentJSON:
-        contentList.append(content["content"])
+        temp = content["content"]
+        contentList.append(temp.replace("gt", "").replace("lt",""))
 
     readingLevel = None
     stringLength = None
